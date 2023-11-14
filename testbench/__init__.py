@@ -16,8 +16,10 @@ class Result:
         self.expected = expected
         self.correct = output == expected
 
+    def __str__(self):
+        return f'Output: {self.output}, Expected: {self.expected}, Correct: {self.correct}'
 
-def verify(target: BenchTarget, knowledge: Iterable[(str, str)]) -> Iterable[(str, list[Result])]:
+def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)]) -> Iterable[(str, list[Result])]:
     # for each knowledge pair, ask each model
     result = []
     models = [target.provider.use(model, target.system_prompt) for model in target.models]

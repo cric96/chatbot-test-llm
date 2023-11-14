@@ -29,4 +29,4 @@ class OllamaLanguageModel(LanguageModel):
             'system_prompt': self.system_prompt,
         }
         reply = requests.post(f'http://{self.host}:{self.port}/api/generate', data=json.dumps(payload))
-        return reply.json()
+        return reply.json()['response']
