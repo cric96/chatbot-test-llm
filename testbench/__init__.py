@@ -22,7 +22,10 @@ class Result:
     def __init__(self, output: str, expected: str):
         self.output = output
         self.expected = expected
-        self.correct = output == expected
+
+    @property
+    def correct(self) -> bool:
+        return self.output == self.expected
 
     def __str__(self):
         return f'Output: {self.output}, Expected: {self.expected}, Correct: {self.correct}'
@@ -51,9 +54,19 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
             if file_name.is_file():
                 # read from cache
                 with open(file_name, 'r') as f:
+                    # first, clear the file from escaped quotes
+                    content = f.read()
+                    content = content.replace('\\"', '"')
                     # for each line create a result
-                    reader = csv.reader(f)
-                    for line in reader:
+                    reader = csv.reader(content.splitlines())
+                    for idx, line in enumerate(reader):
+                        if len(line) == 1:
+                            # this means that in the model's response there were nested quotes
+                            # So we need to merge the lines
+                            next_line = next(reader)
+                            line = line[0] + next_line[0], next_line[1]
+                        if len(line) != 2:
+                            raise ValueError(f'Invalid line in cache file: {line}')
                         output, expected = line
                         responses.append(Result(output, expected))
                 result.append((question, responses))
