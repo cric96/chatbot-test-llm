@@ -15,10 +15,10 @@ class OllamaService(LanguageModelProvider):
 
 # A language model that uses the Ollama API to generate text based on the REST API described here: https://github.com/jmorganca/ollama/blob/main/docs/api.md
 class OllamaLanguageModel(LanguageModel):
-    def __init__(self, host: str, port: int, name: str, system_prompt: str):
+    def __init__(self, host: str, port: int, name: str, system: str):
         self.host = host
         self.port = port
-        self.system_prompt = system_prompt
+        self.system = system
         self.name = name
 
     def ask(self, question: str) -> str:
@@ -26,7 +26,7 @@ class OllamaLanguageModel(LanguageModel):
             'model': self.name,
             'prompt': f'{question}',
             'stream': False,
-            'system_prompt': self.system_prompt,
+            'system': self.system,
         }
         reply = requests.post(f'http://{self.host}:{self.port}/api/generate', data=json.dumps(payload))
         return reply.json()['response']

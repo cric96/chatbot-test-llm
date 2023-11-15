@@ -19,7 +19,7 @@ if __name__ == '__main__':
             data = list(reader)
             targets = [target_from_object(bench) for bench in bench_list]
             logger.debug(f'Loaded {len(targets)} target' + ('s' if len(targets) > 1 else ''))
-            reports = [evaluate_target(target, data, False) for target in targets]
+            reports = [evaluate_target(target, data) for target in targets]
             for report in reports:
                 for question, responses in report:
                     logger.info(f'Question: {question}')

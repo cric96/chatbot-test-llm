@@ -12,10 +12,10 @@ CACHE = PATH / 'cache'
 
 
 class BenchTarget:
-    def __init__(self, provider: LanguageModelProvider, models: list[str], system_prompt: str):
+    def __init__(self, provider: LanguageModelProvider, models: list[str], system: str):
         self.provider = provider
         self.models = models
-        self.system_prompt = system_prompt
+        self.system = system
 
 
 class Result:
@@ -39,13 +39,13 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
 
     # for each knowledge pair, ask each model
     result = []
-    models = [target.provider.use(model, target.system_prompt) for model in target.models]
+    models = [target.provider.use(model, target.system) for model in target.models]
     for (question, expected) in knowledge:
         responses = []
         if use_cache:
             if CACHE.exists() is False:
                 CACHE.mkdir()
-            hyperparameters = f'{question}_{target.models}_{target.system_prompt}'
+            hyperparameters = f'{question}_{target.models}_{target.system}'
             hash_file_name = md5(hyperparameters.encode()).hexdigest() + '.csv'
             file_name = CACHE / hash_file_name
             if file_name.is_file():
@@ -63,13 +63,14 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
                 enable_file_logging(str(file_name))
                 for model in models:
                     reply = Result(ask_model(model, question), expected)
-                    responses.append(result)
+                    responses.append(reply)
                     logger.info(f'{reply.to_csv()}')
+                result.append((question, responses))
             disable_file_logging()
         else:
             for model in models:
                 responses.append(Result(ask_model(model, question), expected))
-        result.append((question, responses))
+            result.append((question, responses))
     return result
 
 
@@ -77,5 +78,5 @@ def target_from_object(obj: dict) -> BenchTarget:
     provider_class = locate(obj['provider']['name'])
     provider = provider_class(**obj['provider']['args'])
     models = obj['models']
-    system_prompt = obj['system_prompt']
-    return BenchTarget(provider, models, system_prompt)
+    system = obj['system']
+    return BenchTarget(provider, models, system)
