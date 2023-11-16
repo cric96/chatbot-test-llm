@@ -1,5 +1,6 @@
 import csv
 import re
+import pandas as pd
 from hashlib import md5
 from typing import Iterable, Type
 from testbench import Result, BenchTarget, CACHE
@@ -7,10 +8,17 @@ from testbench import Result, BenchTarget, CACHE
 
 class SmartResult(Result):
 
+    @staticmethod
+    def _clean_string(string: str) -> str:
+        return re.sub("[^A-Za-z0-9]+", "", string).lower()
+
     @property
-    def correct(self) -> bool:
-        # remove all non-alphanumeric characters (e.g., spaces, punctuation)
-        return re.sub("[^A-Za-z0-9]+", "", self.output) == re.sub("[^A-Za-z0-9]+", "", self.expected)
+    def output(self) -> str:
+        return self._clean_string(self._output)
+
+    @property
+    def expected(self) -> str:
+        return self._clean_string(self._expected)
 
 
 class Statistics:
@@ -20,6 +28,18 @@ class Statistics:
     @property
     def accuracy(self) -> float:
         return len([result for result in self.results if result.correct]) / len(self.results)
+
+
+    @property
+    def confusion_matrix(self) -> pd.DataFrame:
+        unique_categories = sorted(list(set([result.expected for result in self.results]))) + ['altro']
+        matrix = pd.DataFrame(0, index=unique_categories, columns=unique_categories)
+        for result in self.results:
+            r_out = result.output
+            if result.output not in unique_categories:
+                r_out = 'altro'
+            matrix.loc[result.expected, r_out] += 1
+        return matrix
 
 
 def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]]) -> Iterable[Statistics]:

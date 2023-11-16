@@ -1,2 +1,5 @@
-requests==2.31.0
+requests
 pyyaml
+matplotlib
+seaborn
+pandas

@@ -20,8 +20,16 @@ class BenchTarget:
 
 class Result:
     def __init__(self, output: str, expected: str):
-        self.output = output
-        self.expected = expected
+        self._output = output
+        self._expected = expected
+
+    @property
+    def output(self) -> str:
+        return self._output
+
+    @property
+    def expected(self) -> str:
+        return self._expected
 
     @property
     def correct(self) -> bool:

@@ -2,6 +2,8 @@ import argparse
 import yaml
 import csv
 import os
+import seaborn as sn
+import matplotlib.pyplot as plt
 from analysis import analise_target
 from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_DEBUG
 from testbench._logging import INDENT, LOG_FLOAT_PRECISION
@@ -25,11 +27,17 @@ if __name__ == '__main__':
                 for question, responses in report:
                     logger.info(f'Question: {question}')
                     for response in responses:
-                        logger.info(f'{INDENT}Output: {response.output}')
-                        logger.info(f'{INDENT}Expected: {response.expected}')
+                        logger.info(f'{INDENT}Output: {response._output}')
+                        logger.info(f'{INDENT}Expected: {response._expected}')
                         logger.info(f'{INDENT}Correct: {response.correct}')
             statistics = [analise_target(target, data) for target in targets]
             for models_statistics in statistics:
                 for model_statistics in models_statistics:
                     logger.info(f'{(model_statistics.accuracy * 100):.{LOG_FLOAT_PRECISION}f}% accuracy')
+                    logger.info(f'\n{model_statistics.confusion_matrix}\n')
+                    # plot confusion matrix and save it
+                    plt.figure()
+                    sn.heatmap(model_statistics.confusion_matrix, annot=True, fmt='g')
+                    plt.savefig(f'confusion_matrix.png')
+
 
