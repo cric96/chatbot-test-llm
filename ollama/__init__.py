@@ -29,4 +29,12 @@ class OllamaLanguageModel(LanguageModel):
             'system': self.system,
         }
         reply = requests.post(f'http://{self.host}:{self.port}/api/generate', data=json.dumps(payload))
-        return reply.json()['response']
+        return OllamaLanguageModel._pretty_format(reply.json()['response'])
+
+    @staticmethod
+    def _pretty_format(response: str) -> str:
+        # remove all double quotes
+        response = response.replace('"', '')
+        # add a double quote at the beginning and end
+        response = f'"{response}"'
+        return response

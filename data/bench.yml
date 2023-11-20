@@ -3,7 +3,7 @@
     args:
       port: 11434
       host: "training1.stairwai.ce.almaai.unibo.it"
-  models: ["mistral"]
+  models: ["llama2:7b", "llama2:13b", "mistral", "vicuna"]
   system: >
     Determina quale delle seguenti categorie specifiche si riferisce la domanda di un paziente. 
     Le categorie sono:
