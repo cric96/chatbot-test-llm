@@ -9,8 +9,8 @@ from testbench import target_from_object, evaluate_target, logger, enable_loggin
 from testbench._logging import INDENT, LOG_FLOAT_PRECISION
 
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
-parser.add_argument('--data-file', type=str, default='./data/sentences.csv', help='input file path')
-parser.add_argument('--bench-file', type=str, default='./data/bench.yml', help='benchmark configuration path')
+parser.add_argument('--data-file', type=str, default='./data/sentences4.csv', help='input file path')
+parser.add_argument('--bench-file', type=str, default='./data/bench4.yml', help='benchmark configuration path')
 enable_logging(level=LOG_DEBUG)
 
 if __name__ == '__main__':
@@ -19,6 +19,7 @@ if __name__ == '__main__':
         with open(os.path.abspath(args.data_file), 'r') as data_file:
             bench_list = yaml.load(bench_definition_file, Loader=yaml.FullLoader)
             reader = csv.reader(data_file)
+            headers = next(reader)
             data = list(reader)
             targets = [target_from_object(bench) for bench in bench_list]
             logger.debug(f'Loaded {len(targets)} target' + ('s' if len(targets) > 1 else ''))
@@ -36,8 +37,10 @@ if __name__ == '__main__':
                     logger.info(f'{(model_statistics.accuracy * 100):.{LOG_FLOAT_PRECISION}f}% accuracy')
                     logger.info(f'\n{model_statistics.confusion_matrix}\n')
                     # plot confusion matrix and save it
-                    # plt.figure()
-                    # sn.heatmap(model_statistics.confusion_matrix, annot=True, fmt='g')
-                    # plt.savefig(f'confusion_matrix.png')
+                    plt.figure()
+                    sn.heatmap(model_statistics.confusion_matrix, annot=True, fmt='g')
+                    plt.xlabel('Predicted')
+                    plt.ylabel('Actual')
+                    plt.savefig(f'confusion_matrix.png')
 
 

@@ -64,7 +64,9 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
                 with open(file_name, 'r') as f:
                     # first, clear the file from escaped quotes
                     content = f.read()
-                    content = content.replace('\\"', '"')
+                    content = content.replace('""', '"')
+                    content = content.replace("\\'", '')
+
                     # for each line create a result
                     reader = csv.reader(content.splitlines())
                     for idx, line in enumerate(reader):
@@ -72,9 +74,11 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
                             # this means that in the model's response there were nested quotes
                             # So we need to merge the lines
                             next_line = next(reader)
+                            if len(next_line) != 2:
+                                raise ValueError(f'Invalid line in cache file: {next_line}\n in file {file_name}')
                             line = line[0] + next_line[0], next_line[1]
                         if len(line) != 2:
-                            raise ValueError(f'Invalid line in cache file: {line}')
+                            raise ValueError(f'Invalid line in cache file: {line}\n in file {file_name}')
                         output, expected = line
                         responses.append(Result(output, expected))
                 result.append((question, responses))

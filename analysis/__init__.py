@@ -52,12 +52,20 @@ def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]]) ->
         file_name = CACHE / hash_file_name
         with open(file_name, 'r') as f:
             # for each line create a result
-            reader = csv.reader(f)
+            content = f.read()
+            content = content.replace('""', '"')
+            content = content.replace("\\'", '')
+
+            # for each line create a result
+            reader = csv.reader(content.splitlines())
+
             for idx, line in enumerate(reader):
                 if len(line) == 1:
                     # this means that in the model's response there were nested quotes
                     # So we need to merge the lines
                     next_line = next(reader)
+                    if len(next_line) != 2:
+                        raise ValueError(f'Invalid line in cache file: {line} in file {file_name}')
                     line = line[0] + next_line[0], next_line[1]
                 if len(line) != 2:
                     raise ValueError(f'Invalid line in cache file: {line}')
