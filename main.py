@@ -9,7 +9,7 @@ from testbench import target_from_object, evaluate_target, logger, enable_loggin
 from testbench._logging import INDENT, LOG_FLOAT_PRECISION
 
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
-parser.add_argument('--data-file', type=str, default='./data/sentences4.csv', help='input file path')
+parser.add_argument('--data-file', type=str, default='./data/reduced.csv', help='input file path')
 parser.add_argument('--bench-file', type=str, default='./data/bench4.yml', help='benchmark configuration path')
 enable_logging(level=LOG_DEBUG)
 
