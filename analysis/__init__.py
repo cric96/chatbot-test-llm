@@ -1,24 +1,8 @@
 import csv
-import re
 import pandas as pd
 from hashlib import md5
 from typing import Iterable, Type
-from testbench import Result, BenchTarget, CACHE
-
-
-class SmartResult(Result):
-
-    @staticmethod
-    def _clean_string(string: str) -> str:
-        return re.sub("[^A-Za-z0-9]+", "", string).lower()
-
-    @property
-    def output(self) -> str:
-        return self._clean_string(self._output)
-
-    @property
-    def expected(self) -> str:
-        return self._clean_string(self._expected)
+from testbench import Result, BenchTarget, CACHE, SmartResult
 
 
 class Statistics:

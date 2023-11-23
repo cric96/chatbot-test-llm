@@ -4,6 +4,7 @@
       port: 11434
       host: "training1.stairwai.ce.almaai.unibo.it"
   models: ["mistral"]
+  classes: ["umore", "generale", "inserimentoDatiFrequenza", "inserimentoDatiGenerali", "inserimentoDatiTotali", "inserimentoDatiPressione", "richiesta"]
   system: >
     Determina quale delle seguenti categorie specifiche si riferisce la domanda di un paziente.
     Sii conciso: rispondi solo con il nome di una categoria.

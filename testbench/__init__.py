@@ -1,4 +1,6 @@
 import csv
+import random
+import re
 from hashlib import md5
 from pathlib import Path
 from core import LanguageModelProvider, LanguageModel
@@ -12,10 +14,11 @@ CACHE = PATH / 'cache'
 
 
 class BenchTarget:
-    def __init__(self, provider: LanguageModelProvider, models: list[str], system: str):
+    def __init__(self, provider: LanguageModelProvider, models: list[str], system: str, classes: list[str] = None):
         self.provider = provider
         self.models = models
         self.system = system
+        self.classes = classes
 
 
 class Result:
@@ -42,6 +45,25 @@ class Result:
         return f'"{self.output}", "{self.expected}"'
 
 
+class SmartResult(Result):
+
+    @staticmethod
+    def _clean_string(string: str) -> str:
+        return re.sub("[^A-Za-z0-9]+", "", string).lower()
+
+    @staticmethod
+    def clean_comparison(first: str, second: str) -> bool:
+        return SmartResult._clean_string(first) == SmartResult._clean_string(second)
+
+    @property
+    def output(self) -> str:
+        return self._clean_string(self._output)
+
+    @property
+    def expected(self) -> str:
+        return self._clean_string(self._expected)
+
+
 def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_cache: bool = True) -> Iterable[(str, list[Result])]:
 
     def ask_model(local_model: LanguageModel, local_question: str) -> str:
@@ -51,6 +73,7 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
     # for each knowledge pair, ask each model
     result = []
     models = [target.provider.use(model, target.system) for model in target.models]
+    classes = target.classes
     for (question, expected) in knowledge:
         responses = []
         if use_cache:
@@ -88,6 +111,15 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
                 enable_file_logging(str(file_name))
                 for model in models:
                     reply = Result(ask_model(model, question), expected)
+                    # Check if reply is a valid class
+                    if classes is not None:
+                        if SmartResult._clean_string(reply.output) not in classes:
+                            # Retry
+                            reply = Result(ask_model(model, question), expected)
+                            # Check if reply is a valid class
+                            if SmartResult._clean_string(reply.output) not in classes:
+                                # Randomly pick a class
+                                reply = Result(random.choice(classes), expected)
                     responses.append(reply)
                     logger.info(f'{reply.to_csv()}')
                 result.append((question, responses))
@@ -104,4 +136,7 @@ def target_from_object(obj: dict) -> BenchTarget:
     provider = provider_class(**obj['provider']['args'])
     models = obj['models']
     system = obj['system']
-    return BenchTarget(provider, models, system)
+    classes = obj['classes']
+    return BenchTarget(provider, models, system, classes)
+
+
