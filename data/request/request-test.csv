@@ -1,6 +1,6 @@
 Sentence,Expected,Gpt response
 Vorrei vedere tutte le informazioni che ho dato in passato.,GENERALE -1 LISTA,GENERALE -1 LISTA
-Qual è la media delle mie misurazioni degli ultimi dodici mesi?,PRESSIONE 365 MEDIA,PRESSIONE 365 MEDIA
+Qual è la media delle mie misurazioni degli ultimi dodici mesi?,GENERALE 365 MEDIA,PRESSIONE 365 MEDIA
 Media pressione scorsa settimana,PRESSIONE 7 MEDIA,Mi scuso per l'incomprensione. Di quale informazione specifica hai bisogno?
 Vorrei vedere un riepilogo di tutte le informazioni che ho inserito in passato.,GENERALE -1 LISTA,GENERALE -1 LISTA
 Vorrei dare un’occhiata alle ultime letture della frequenza cardiaca che ho inserito nell’ultimo mese.,FREQUENZA 30 LISTA,FREQUENZA 30 LISTA
