@@ -3,3 +3,5 @@ pyyaml
 matplotlib
 seaborn
 pandas
+bert_score
+evaluate
