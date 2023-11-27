@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 from hashlib import md5
 from typing import Iterable, Type
-from testbench import Result, BenchTarget, CACHE, SmartResult
+from testbench import Result, BenchTarget, CACHE, SmartResult, RequestResult
 
 
 class Statistics:
@@ -13,6 +13,11 @@ class Statistics:
     def accuracy(self) -> float:
         return len([result for result in self.results if result.correct]) / len(self.results)
 
+    @property
+    def one_by_one_accuracy(self) -> tuple[float, float, float]:
+        number_of_results = len(self.results)
+        m, q, f = list(zip(*[result.one_by_one_comparison for result in self.results]))
+        return sum(m) / number_of_results, sum(q) / number_of_results, sum(f) / number_of_results
 
     @property
     def confusion_matrix(self) -> pd.DataFrame:
@@ -54,7 +59,7 @@ def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]]) ->
                 if len(line) != 2:
                     raise ValueError(f'Invalid line in cache file: {line}')
                 output, expected = line
-                results[model_names[idx]].append(SmartResult(output, expected))
+                results[model_names[idx]].append(RequestResult(output, expected))
     return [Statistics(result_list) for result_list in results.values()]
 
 
@@ -64,8 +69,8 @@ def analise_request(knowledge: Iterable[tuple[str, str]]) -> Iterable[Statistics
     for (question, expected, gpt) in knowledge:
         # expected_measure, expected_quantity, expected_format = expected.split()
         if len(gpt.split()) != 3:
-            results['gpt'].append(SmartResult('altro', expected))
+            results['gpt'].append(RequestResult('altro altro altro', expected))
             continue
         # pgt_measure, pgt_quantity, pgt_format = gpt.split()
-        results['gpt'].append(SmartResult(gpt, expected))
+        results['gpt'].append(RequestResult(gpt, expected))
     return [Statistics(result_list) for result_list in results.values()]

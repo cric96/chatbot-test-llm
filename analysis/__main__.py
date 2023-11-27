@@ -28,11 +28,7 @@ if __name__ == '__main__':
                 for model_statistics in models_statistics:
                     logger.info(f'{(model_statistics.accuracy * 100):.{LOG_FLOAT_PRECISION}f}% accuracy')
                     logger.info(f'\n{model_statistics.confusion_matrix}\n')
+                    logger.info(f'\n\n{model_statistics.one_by_one_accuracy}\n\n')
                     # plot confusion matrix and save it
-                    plt.figure()
-                    sn.heatmap(model_statistics.confusion_matrix, annot=True, fmt='g')
-                    plt.xlabel('Predicted')
-                    plt.ylabel('Actual')
-                    plt.savefig(f'request_confusion_matrix.png')
 
 

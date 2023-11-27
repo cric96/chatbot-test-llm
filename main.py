@@ -8,6 +8,7 @@ from analysis import analise_target
 from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_DEBUG
 from testbench._logging import INDENT, LOG_FLOAT_PRECISION
 
+generate_plot = False
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
 parser.add_argument('--data-file', type=str, default='./data/request/request-test.csv', help='input file path')
 parser.add_argument('--bench-file', type=str, default='./data/request/bench3params.yml', help='benchmark configuration path')
@@ -36,11 +37,13 @@ if __name__ == '__main__':
                 for model_statistics in models_statistics:
                     logger.info(f'{(model_statistics.accuracy * 100):.{LOG_FLOAT_PRECISION}f}% accuracy')
                     logger.info(f'\n{model_statistics.confusion_matrix}\n')
-                    # plot confusion matrix and save it
-                    plt.figure()
-                    sn.heatmap(model_statistics.confusion_matrix, annot=True, fmt='g')
-                    plt.xlabel('Predicted')
-                    plt.ylabel('Actual')
-                    plt.savefig(f'confusion_matrix.png')
+                    logger.info(f'\n\n{model_statistics.one_by_one_accuracy}\n\n')
+                    if generate_plot:
+                        # plot confusion matrix and save it
+                        plt.figure()
+                        sn.heatmap(model_statistics.confusion_matrix, annot=True, fmt='g')
+                        plt.xlabel('Predicted')
+                        plt.ylabel('Actual')
+                        plt.savefig(f'confusion_matrix.png')
 
 

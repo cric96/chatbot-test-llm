@@ -23,8 +23,8 @@ class BenchTarget:
 
 class Result:
     def __init__(self, output: str, expected: str):
-        self._output = output
-        self._expected = expected
+        self._output = output.strip()
+        self._expected = expected.strip()
 
     @property
     def output(self) -> str:
@@ -37,6 +37,10 @@ class Result:
     @property
     def correct(self) -> bool:
         return self.output == self.expected
+
+    @property
+    def one_by_one_comparison(self) -> tuple[bool, bool, bool]:
+        raise NotImplementedError
 
     def __str__(self):
         return f'Output: {self.output}, Expected: {self.expected}, Correct: {self.correct}'
@@ -62,6 +66,31 @@ class SmartResult(Result):
     @property
     def expected(self) -> str:
         return self._clean_string(self._expected)
+
+
+class RequestResult(SmartResult):
+
+    def _get_output(self, key: int) -> str:
+        return self._output.split(" ")[key]
+
+    def _get_expected(self, key: int) -> str:
+        return self._expected.split(" ")[key]
+
+    @property
+    def measure_comparison(self) -> bool:
+        return self.clean_comparison(self._get_output(0), self._get_expected(0))
+
+    @property
+    def quantity_comparison(self) -> bool:
+        return self.clean_comparison(self._get_output(1), self._get_expected(1))
+
+    @property
+    def format_comparison(self) -> bool:
+        return self.clean_comparison(self._get_output(2), self._get_expected(2))
+
+    @property
+    def one_by_one_comparison(self) -> tuple[bool, bool, bool]:
+        return self.measure_comparison, self.quantity_comparison, self.format_comparison
 
 
 def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_cache: bool = True) -> Iterable[(str, list[Result])]:
