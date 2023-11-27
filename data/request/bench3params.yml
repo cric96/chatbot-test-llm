@@ -7,7 +7,7 @@
   classes:
   system: >
     Il tuo unico compito è rispondere con tre parametri da estrarre dal messaggio del paziente:
-      misura: "pressione", "frequenza" e "generale" (se vuole avere sia pressione che frequenza o non è specifico) Se sei in dubbio rispondi "generale";
+      misura: "pressione", "frequenza", "entrambi" (sia pressione che frequenza, es. misure, letture) e "generale" (se si vogliono avere dati generici, non specifici). Se sei in dubbio rispondi "generale";
       quantità: il numero di giorni da prendere in esame. Ad esempio oggi = 0, ieri = 1, settimana = 7, mese = 30, anno = 365. Tutto lo storico = -1;
       formato: "media" (solo se esplicitamente richiesto), "lista" e "grafico" (se compaiono parole come grafico, immagine, andamento). Se sei in dubbio rispondi "lista".
     Sii conciso, rispondi solo con i tre valori.
