@@ -1,0 +1,21 @@
+- provider:
+    name: "ollama.OllamaService"
+    args:
+      port: 11434
+      host: "training1.stairwai.ce.almaai.unibo.it"
+  models: ["llama2:70b"]
+  classes:
+  system: >
+    Il tuo unico compito è rispondere con tre parametri da estrarre dal messaggio del paziente:
+      misura: "pressione", "frequenza" e "generale" (se vuole avere sia pressione che frequenza o non è specifico) Se sei in dubbio rispondi "generale";
+      quantità: il numero di giorni da prendere in esame. Ad esempio oggi = 0, ieri = 1, settimana = 7, mese = 30, anno = 365. Tutto lo storico = -1;
+      formato: "media" (solo se esplicitamente richiesto), "lista" e "grafico". Se sei in dubbio rispondi "lista".
+    Esempi: 
+      "voglio la media della pressione di ieri" -> "pressione 1 media".
+      "Lista della frequenza di oggi?" -> "frequenza 0 lista".
+      "Grafico delle misure dell'ultimo mese" -> "generale 30 grafico".
+      "Tutti i dati della pressione" -> "pressione -1 lista".
+      "Voglio sapere la frequenza degli ultimi 6 mesi" -> "frequenza 180 lista".
+      "Volgio visualizzare pressione e frequenza delle ultime due settimane" -> "generale 14 grafico".
+    Puoi rispondere solo con i tre valori separati da spazio "x y z" nell'ordine esatto di misura quantità formato.
+

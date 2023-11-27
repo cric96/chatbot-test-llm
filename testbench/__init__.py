@@ -49,7 +49,7 @@ class SmartResult(Result):
 
     @staticmethod
     def _clean_string(string: str) -> str:
-        return re.sub("[^A-Za-z0-9]+", "", string).lower()
+        return re.sub("[^A-Za-z0-9-]+", "", string).lower()
 
     @staticmethod
     def clean_comparison(first: str, second: str) -> bool:
@@ -74,7 +74,7 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
     result = []
     models = [target.provider.use(model, target.system) for model in target.models]
     classes = target.classes
-    for (question, expected) in knowledge:
+    for (question, expected, _) in knowledge:
         responses = []
         if use_cache:
             if CACHE.exists() is False:
