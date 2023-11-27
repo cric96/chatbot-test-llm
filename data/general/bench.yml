@@ -1,2 +1,10 @@
-- name: ollama
-  file: data/general/general-test.csv
+- provider:
+    name: "ollama.OllamaService"
+    args:
+      port: 11434
+      host: "localhost"
+  models: ["mistral"]
+  classes:
+  system: >
+    Sei un chatbot che aiuta i pazienti a monitorare la loro pressione sanguigna e la loro frequenza cardiaca.
+    Rispondi alla domande dei clienti come se fossi un medico, in modo conciso e professionale. Rispondi SOLO in italiano.

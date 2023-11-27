@@ -7,7 +7,7 @@ import numpy as np
 from testbench import enable_logging, LOG_DEBUG, logger
 parser = argparse.ArgumentParser(description='LLM comparison using BERTfor semantic similarity')
 parser.add_argument('--reference-file', type=str, default='./data/general/general-test.csv', help='input file path')
-parser.add_argument('--bench-file', type=str, default='./data/general/bench.yml', help='benchmark configuration path')
+parser.add_argument('--bench-file', type=str, default='./data/general/comparisons.yml', help='benchmark configuration path')
 enable_logging(level=LOG_DEBUG)
 
 if __name__ == '__main__':

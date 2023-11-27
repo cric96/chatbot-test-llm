@@ -35,29 +35,16 @@ def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]]) ->
     # for each knowledge pair, ask each model
     model_names = [model for model in target.models]
     results = {model: [] for model in model_names}
-    for (question, expected, _) in knowledge:
+    for element in knowledge:
+        question = element[0]
+        expected = element[1]
         hyperparameters = f'{question}_{target.models}_{target.system}'
         hash_file_name = md5(hyperparameters.encode()).hexdigest() + '.csv'
         file_name = CACHE / hash_file_name
         with open(file_name, 'r') as f:
             # for each line create a result
-            content = f.read()
-            content = content.replace('""', '"')
-            content = content.replace("\\'", '')
-
-            # for each line create a result
-            reader = csv.reader(content.splitlines())
-
+            reader = csv.reader(f, delimiter=' ')
             for idx, line in enumerate(reader):
-                if len(line) == 1:
-                    # this means that in the model's response there were nested quotes
-                    # So we need to merge the lines
-                    next_line = next(reader)
-                    if len(next_line) != 2:
-                        raise ValueError(f'Invalid line in cache file: {line} in file {file_name}')
-                    line = line[0] + next_line[0], next_line[1]
-                if len(line) != 2:
-                    raise ValueError(f'Invalid line in cache file: {line}')
                 output, expected = line
                 results[model_names[idx]].append(RequestResult(output, expected))
     return [Statistics(result_list) for result_list in results.values()]

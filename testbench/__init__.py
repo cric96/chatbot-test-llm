@@ -7,7 +7,13 @@ from core import LanguageModelProvider, LanguageModel
 from collections.abc import Iterable
 from pydoc import locate
 from ._logging import *
+import io
 
+def csv_formatter(string):
+    outstream = io.StringIO()   # "fake" output file
+    cw = csv.writer(outstream, quoting=csv.QUOTE_ALL, lineterminator="")  # pass the fake file to csv module
+    cw.writerow([string])       # write a row
+    return outstream.getvalue()
 
 PATH = Path(__file__).parents[0]
 CACHE = PATH / 'cache'
@@ -46,7 +52,7 @@ class Result:
         return f'Output: {self.output}, Expected: {self.expected}, Correct: {self.correct}'
 
     def to_csv(self):
-        return f'"{self.output}", "{self.expected}"'
+        return f'{csv_formatter(self.output)} {csv_formatter(self.expected)}'
 
 
 class SmartResult(Result):
@@ -77,8 +83,11 @@ class RequestResult(SmartResult):
     default_format = 'lista'
 
     def _get_output(self, key: int) -> str:
-        return self._output.split(" ")[key]
-
+        ## if contains the key, return it or none
+        if len(self._output.split(" ")) > key:
+            return self._output.split(" ")[key]
+        else:
+            return ""
     def _get_expected(self, key: int) -> str:
         return self._expected.split(" ")[key]
 
@@ -125,7 +134,9 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
     result = []
     models = [target.provider.use(model, target.system) for model in target.models]
     classes = target.classes
-    for (question, expected, _) in knowledge:
+    for element in knowledge:
+        question = element[0]
+        expected = element[1]
         responses = []
         if use_cache:
             if CACHE.exists() is False:
@@ -136,23 +147,18 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
             if file_name.is_file():
                 # read from cache
                 with open(file_name, 'r') as f:
+                    ## csv reader
                     # first, clear the file from escaped quotes
-                    content = f.read()
-                    content = content.replace('""', '"')
-                    content = content.replace("\\'", '')
+                    ##content = f.read()
+                    ##content = content.replace('""', '"')
+                    ##content = content.replace("\\'", '')
 
                     # for each line create a result
-                    reader = csv.reader(content.splitlines())
+                    reader = csv.reader(f, delimiter=' ')
                     for idx, line in enumerate(reader):
-                        if len(line) == 1:
-                            # this means that in the model's response there were nested quotes
-                            # So we need to merge the lines
-                            next_line = next(reader)
-                            if len(next_line) != 2:
-                                raise ValueError(f'Invalid line in cache file: {next_line}\n in file {file_name}')
-                            line = line[0] + next_line[0], next_line[1]
                         if len(line) != 2:
-                            raise ValueError(f'Invalid line in cache file: {line}\n in file {file_name}')
+                            message = f'Invalid line in cache file: {line}\n in file {file_name}, line {idx}, length {len(line)}'
+                            raise ValueError(message)
                         output, expected = line
                         responses.append(Result(output, expected))
                 result.append((question, responses))
