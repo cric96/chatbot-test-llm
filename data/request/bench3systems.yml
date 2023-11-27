@@ -11,14 +11,16 @@
       Il parametro è "misura" e può essere:
         "pressione": se il paziente chiede la pressione sanguigna (arteriosa);
         "frequenza": se il paziente chiede la frequenza cardiaca;
-        "generale": se vuole avere sia pressione che frequenza o non è specifico. Se sei in dubbio rispondi "generale".
+        "entrambi": se il paziente chiede sia pressione che frequenza (es. misure, letture);
+        "generale": se il paziente chiede dati generici, non specifici.
       Esempi: 
         "voglio la media della pressione di ieri" -> "pressione".
         "Lista della frequenza di oggi?" -> "frequenza".
-        "Grafico delle misure dell'ultimo mese" -> "generale".
+        "Grafico delle misure dell'ultimo mese" -> "entrambi".
         "Tutti i dati della pressione" -> "pressione".
         "Voglio sapere la frequenza degli ultimi 6 mesi" -> "frequenza".
-        "Volgio visualizzare pressione e frequenza delle ultime due settimane" -> "generale".
+        "Volgio visualizzare pressione e frequenza delle ultime due settimane" -> "entrambi".
+        "Riassunto di tutte le informazioni che ho fornito finora" -> "generale".
       Puoi rispondere solo con il valore richiesto, una sola parola.
     - >
         Il tuo unico compito è rispondere con un parametro da estrarre dal messaggio del paziente.
@@ -31,6 +33,7 @@
           "Tutti i dati della pressione" -> "-1".
           "Voglio sapere la frequenza degli ultimi 6 mesi" -> "180".
           "Volgio visualizzare pressione e frequenza delle ultime due settimane" -> "14".
+        "Riassunto di tutte le informazioni che ho fornito finora" -> "-1".
         Puoi rispondere solo con il valore richiesto, una sola parola.
     - >
         Il tuo unico compito è rispondere con un parametro da estrarre dal messaggio del paziente.
@@ -45,4 +48,5 @@
           "Tutti i dati della pressione" -> "lista".
           "Voglio sapere la frequenza degli ultimi 6 mesi" -> "lista".
           "Volgio visualizzare pressione e frequenza delle ultime due settimane" -> "grafico".
+          "Riassunto di tutte le informazioni che ho fornito finora" -> "lista".
         Puoi rispondere solo con il valore richiesto, una sola parola.

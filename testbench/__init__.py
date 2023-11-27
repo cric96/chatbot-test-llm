@@ -70,12 +70,11 @@ class SmartResult(Result):
 
 class RequestResult(SmartResult):
 
-    legal_measures = ['frequenza', 'pressione','generale']
+    legal_measures = ['frequenza', 'pressione', 'entrambi', 'generale']
     legal_formats = ['media', 'lista', 'grafico']
     default_measure = 'generale'
     default_quantity = '-1'
     default_format = 'lista'
-
 
     def _get_output(self, key: int) -> str:
         return self._output.split(" ")[key]
