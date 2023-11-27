@@ -26,9 +26,11 @@ if __name__ == '__main__':
             statistics = [analise_request(data) for target in targets]
             for models_statistics in statistics:
                 for model_statistics in models_statistics:
-                    logger.info(f'{(model_statistics.accuracy * 100):.{LOG_FLOAT_PRECISION}f}% accuracy')
-                    logger.info(f'\n{model_statistics.confusion_matrix}\n')
-                    logger.info(f'\n\n{model_statistics.one_by_one_accuracy}\n\n')
+                    logger.info(f'accuracy: {(model_statistics.accuracy):.{LOG_FLOAT_PRECISION}f}')
+                    measure, quantity, format = model_statistics.one_by_one_accuracy
+                    logger.info(f'measure: {measure:.{LOG_FLOAT_PRECISION}f}')
+                    logger.info(f'quantity: {quantity:.{LOG_FLOAT_PRECISION}f}')
+                    logger.info(f'format: {format:.{LOG_FLOAT_PRECISION}f}')
                     # plot confusion matrix and save it
 
 

@@ -70,6 +70,13 @@ class SmartResult(Result):
 
 class RequestResult(SmartResult):
 
+    legal_measures = ['frequenza', 'pressione','generale']
+    legal_formats = ['media', 'lista', 'grafico']
+    default_measure = 'generale'
+    default_quantity = '-1'
+    default_format = 'lista'
+
+
     def _get_output(self, key: int) -> str:
         return self._output.split(" ")[key]
 
@@ -78,19 +85,35 @@ class RequestResult(SmartResult):
 
     @property
     def measure_comparison(self) -> bool:
-        return self.clean_comparison(self._get_output(0), self._get_expected(0))
+        output_measure = self._clean_string(self._get_output(0))
+        if output_measure not in self.legal_measures:
+            output_measure = self.default_measure
+        return self.clean_comparison(output_measure, self._get_expected(0))
 
     @property
     def quantity_comparison(self) -> bool:
-        return self.clean_comparison(self._get_output(1), self._get_expected(1))
+        output_quantity = self._clean_string(self._get_output(1))
+        # check if output quantity is a number
+        try:
+            int(output_quantity)
+        except ValueError:
+            output_quantity = self.default_quantity
+        return self.clean_comparison(output_quantity, self._get_expected(1))
 
     @property
     def format_comparison(self) -> bool:
-        return self.clean_comparison(self._get_output(2), self._get_expected(2))
+        output_format = self._clean_string(self._get_output(2))
+        if output_format not in self.legal_formats:
+            output_format = self.default_format
+        return self.clean_comparison(output_format, self._get_expected(2))
 
     @property
     def one_by_one_comparison(self) -> tuple[bool, bool, bool]:
         return self.measure_comparison, self.quantity_comparison, self.format_comparison
+
+    @property
+    def correct(self) -> bool:
+        return self.measure_comparison and self.quantity_comparison and self.format_comparison
 
 
 def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_cache: bool = True) -> Iterable[(str, list[Result])]:

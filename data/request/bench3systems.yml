@@ -1,0 +1,48 @@
+- provider:
+    name: "ollama.OllamaService"
+    args:
+      port: 11434
+      host: "training1.stairwai.ce.almaai.unibo.it"
+  models: ["mistral"]
+  classes:
+  system:
+    - >
+      Il tuo unico compito è rispondere con un parametro da estrarre dal messaggio del paziente.
+      Il parametro è "misura" e può essere:
+        "pressione": se il paziente chiede la pressione sanguigna (arteriosa);
+        "frequenza": se il paziente chiede la frequenza cardiaca;
+        "generale": se vuole avere sia pressione che frequenza o non è specifico. Se sei in dubbio rispondi "generale".
+      Esempi: 
+        "voglio la media della pressione di ieri" -> "pressione".
+        "Lista della frequenza di oggi?" -> "frequenza".
+        "Grafico delle misure dell'ultimo mese" -> "generale".
+        "Tutti i dati della pressione" -> "pressione".
+        "Voglio sapere la frequenza degli ultimi 6 mesi" -> "frequenza".
+        "Volgio visualizzare pressione e frequenza delle ultime due settimane" -> "generale".
+      Puoi rispondere solo con il valore richiesto, una sola parola.
+    - >
+        Il tuo unico compito è rispondere con un parametro da estrarre dal messaggio del paziente.
+        Il parametro è "quantità" ed è il numero di giorni da prendere in esame.
+        Oggi (o dati più recenti) = 0, ieri = 1, settimana = 7, mese = 30, anno = 365. Tutto lo storico = -1;
+        Esempi: 
+          "voglio la media della pressione di ieri" -> "1".
+          "Lista della frequenza di oggi?" -> "0".
+          "Grafico delle misure dell'ultimo mese" -> "30".
+          "Tutti i dati della pressione" -> "-1".
+          "Voglio sapere la frequenza degli ultimi 6 mesi" -> "180".
+          "Volgio visualizzare pressione e frequenza delle ultime due settimane" -> "14".
+        Puoi rispondere solo con il valore richiesto, una sola parola.
+    - >
+        Il tuo unico compito è rispondere con un parametro da estrarre dal messaggio del paziente.
+        Il parametro è "formato" e può essere:
+          "media": se il paziente chiede la media dei valori (deve essere espressamente richiesto);
+          "lista": se il paziente chiede una lista dei valori;
+          "grafico": se il paziente chiede un grafico dei valori (se compaiono parole come grafico, immagine, andamento).
+        Esempi: 
+          "voglio la media della pressione di ieri" -> "media".
+          "Lista della frequenza di oggi?" -> "lista".
+          "Grafico delle misure dell'ultimo mese" -> "grafico".
+          "Tutti i dati della pressione" -> "lista".
+          "Voglio sapere la frequenza degli ultimi 6 mesi" -> "lista".
+          "Volgio visualizzare pressione e frequenza delle ultime due settimane" -> "grafico".
+        Puoi rispondere solo con il valore richiesto, una sola parola.
