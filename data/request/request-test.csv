@@ -10,7 +10,7 @@ Potrei vedere l’ultima misurazione del ritmo cardiaco che ho registrato?,FREQU
 Mi ricordi l'ultima misurazione fatta sulla frequenza,FREQUENZA 0 LISTA,FREQUENZA 1 LISTA
 Media pressione ultime due settimane,PRESSIONE 14 MEDIA,PRESSIONE 14 MEDIA
 mi daresti l'andamento di pressione nell'ultima settimana?,PRESSIONE 7 GRAFICO,PRESSIONE 7 GRAFICO
-Vorrei vedere le letture della pressione che ho registrato nell’ultima settimana.,PRESSIONE 7 GRAFICO,PRESSIONE 7 GRAFICO
+Vorrei vedere le letture della pressione che ho registrato nell’ultima settimana.,PRESSIONE 7 LISTA,PRESSIONE 7 GRAFICO
 Dammi la lista dei miei dati,GENERALE -1 LISTA,GENERALE -1 LISTA
 Qual è la mia media di frequenza cardiaca di oggi?,FREQUENZA 0 MEDIA,FREQUENZA 1 MEDIA
 Qual è la mia media di pressione sanguigna di ieri?,PRESSIONE 1 MEDIA,PRESSIONE 1 MEDIA
@@ -48,7 +48,6 @@ Posso vedere un riassunto dei miei dati inseriti su di me in passato?,GENERALE -
 Media dei miei dati,ENTRAMBI -1 MEDIA,PRESSIONE -1 MEDIA
 Potresti mostrarmi tutte le mie misurazioni della frequenza cardiaca?,FREQUENZA -1 LISTA,FREQUENZA -1 LISTA
 Mi piacerebbe esaminare i dati sulla frequenza cardiaca che ho registrato nell’ultimo mese.,FREQUENZA 30 LISTA,FREQUENZA 30 LISTA
-Qual è la mia ultima statistica registrata?,ENTRAMBI 0 LISTA,ENTRAMBI 1 LISTA
 Posso avere la media delle mie misurazioni degli ultimi nove mesi?,ENTRAMBI 270 MEDIA,FREQUENZA 270 MEDIA
 Posso vedere un riassunto di tutte le informazioni che ho fornito in passato?,GENERALE -1 LISTA,GENERALE -1 LISTA
 Voglio i dati sulla pressione,PRESSIONE -1 LISTA,ENTRAMBI -1 LISTA
@@ -85,11 +84,10 @@ Dammi i dati sulla pressione,PRESSIONE -1 LISTA,PRESSIONE -1 LISTA
 Qual è la media delle mie misurazioni degli ultimi 365 giorni?,ENTRAMBI 365 MEDIA,PRESSIONE 365 MEDIA
 Qual è la mia media di pressione sanguigna delle ultime quattro settimane?,PRESSIONE 28 MEDIA,PRESSIONE 28 MEDIA
 Qual è la mia media di pressione sanguigna e frequenza cardiaca degli ultimi tre anni?,ENTRAMBI 1095 MEDIA,ENTRAMBI 1095 MEDIA
-Qual è la mia ultima misurazione della frequenza cardiaca visualizzata?,FREQUENZA 0 GRAFICO,FREQUENZA 1 LISTA
 Mi piacerebbe esaminare i dati sulla pressione che ho registrato negli ultimi 7 giorni.,PRESSIONE 7 LISTA,PRESSIONE 7 LISTA
 Potrei controllare le ultime misurazioni della frequenza cardiaca che ho registrato nell’ultimo mese?,FREQUENZA 30 LISTA,FREQUENZA 30 LISTA
 Dammi il grafico con andamento di pressione arteriosa nell'ultima settimana,PRESSIONE 7 GRAFICO,PRESSIONE 7 GRAFICO
-Mi piacerebbe esaminare i dati sulla frequenza che ho registrato nell’ultima settimana.,FREQUENZA 7 GRAFICO,FREQUENZA 7 GRAFICO
+Mi piacerebbe esaminare i dati sulla frequenza che ho registrato nell’ultima settimana.,FREQUENZA 7 LISTA,FREQUENZA 7 GRAFICO
 Quali sono stati i valori sulla frequenza cardiaca nell'ultimo mese,FREQUENZA 30 LISTA,FREQUENZA 30 LISTA
 Dammi i dati della frequenza cardiaca nell’ultimo mese,FREQUENZA 30 LISTA,FREQUENZA 30 LISTA
 Desidero visualizzare le mie letture dell’ultimo mese.,ENTRAMBI 30 LISTA,FREQUENZA 30 LISTA
