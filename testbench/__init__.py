@@ -147,12 +147,6 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
             if file_name.is_file():
                 # read from cache
                 with open(file_name, 'r') as f:
-                    ## csv reader
-                    # first, clear the file from escaped quotes
-                    ##content = f.read()
-                    ##content = content.replace('""', '"')
-                    ##content = content.replace("\\'", '')
-
                     # for each line create a result
                     reader = csv.reader(f, delimiter=' ')
                     for idx, line in enumerate(reader):
