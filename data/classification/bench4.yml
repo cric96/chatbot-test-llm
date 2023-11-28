@@ -3,7 +3,7 @@
     args:
       port: 11434
       host: "training1.stairwai.ce.almaai.unibo.it"
-  models: ["llama2:70b"]
+  models: ["mistral"]
   classes: ["umore", "inserimento", "richiesta", "generale"]
   system: >
     Sei un bot che aiuta i pazienti a monitorare la loro pressione sanguigna e la loro frequenza cardiaca.

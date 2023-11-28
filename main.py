@@ -37,10 +37,7 @@ if __name__ == '__main__':
                 for model_statistics in models_statistics:
                     logger.info('')
                     logger.info(f'accuracy: {(model_statistics.accuracy):.{LOG_FLOAT_PRECISION}f}')
-                    # measure, quantity, format = model_statistics.one_by_one_accuracy
-                    # logger.info(f'measure: {measure:.{LOG_FLOAT_PRECISION}f}')
-                    # logger.info(f'quantity: {quantity:.{LOG_FLOAT_PRECISION}f}')
-                    # logger.info(f'format: {format:.{LOG_FLOAT_PRECISION}f}')
+                    logger.info(f'confusion matrix: {model_statistics.confusion_matrix}')
                     if generate_plot:
                         # plot confusion matrix and save it
                         plt.figure()
