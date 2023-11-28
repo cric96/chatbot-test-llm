@@ -31,7 +31,7 @@ if __name__ == '__main__':
                     for response in responses:
                         logger.info(f'{INDENT}Output: {response._output}')
                         logger.info(f'{INDENT}Expected: {response._expected}')
-                        logger.info(f'{INDENT}Correct: {response.correct}')
+                        # logger.info(f'{INDENT}Correct: {response.correct}')
             statistics = [analise_target(target, data) for target in targets]
             for models_statistics in statistics:
                 for model_statistics in models_statistics:
