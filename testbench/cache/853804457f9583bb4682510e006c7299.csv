@@ -1,0 +1,5 @@
+"""Okay, thank you for letting me know! Based on your message, I understand that you want to know the latest data on pressure. Here are the three values I extract from your message:
+
+* Pressure: 1 (media)
+* Quantity: 0 (today's measures)
+* Formato: lista (you want a list of the pressure measurements)""" "PRESSIONE 0 LISTA"

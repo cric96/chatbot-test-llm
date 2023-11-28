@@ -1,0 +1,5 @@
+"""Okay! Here are the three parameters I extract from your message:
+
+* misura: frequenza (you want to see the frequency readings in the last 7 days)
+* quantità: 7 (the number of days you want to examine)
+* formato: lista (you want to see a list of the readings)""" "FREQUENZA 7 LISTA"

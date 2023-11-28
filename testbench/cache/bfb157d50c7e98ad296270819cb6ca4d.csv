@@ -1,0 +1,5 @@
+"""Okay! Here are the three parameters I extract from your message:
+
+1. Misura: ritmo cardiaco
+2. Quantità: 1 (the number of measurements you want to see)
+3. Formato: lista (you want a list of the measurements)""" "FREQUENZA 0 LISTA"

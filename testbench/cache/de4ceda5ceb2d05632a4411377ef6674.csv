@@ -1,0 +1,7 @@
+"""Okay! Based on your message, I can extract the following information:
+
+* Misure: frequenza (you want to know the frequency of the last three weeks)
+* Quantità: 3 (you want to know the frequency of the last three weeks)
+* Formato: lista (you want a list of the frequencies)
+
+So, my answer is: frequenza 3 lista.""" "FREQUENZA 21 MEDIA"

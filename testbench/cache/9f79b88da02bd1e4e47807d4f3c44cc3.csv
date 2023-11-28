@@ -1,0 +1,11 @@
+"""Okay! From the message you provided, I understand that you want me to extract three parameters:
+
+1. pressione - Media of the pressure yesterday (yesterday's pressure media)
+2. frequenza - List of the frequency today (today's frequency list)
+3. generale - General information (general information)
+
+Please let me know which one you want me to focus on by replying with the corresponding value:
+
+* pressione
+* frequenza
+* generale""" "PRESSIONE -1 LISTA"

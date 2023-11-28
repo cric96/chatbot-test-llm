@@ -1,0 +1,13 @@
+"""Okay, here are all the information you provided:
+
+* Misure: pressione, frequenza, entrambi (pressione e frequenza)
+* Quantità: 0 (today), 1 (yesterday), 7 (week), 30 (month), 365 (year)
+* Formato: media, lista, grafico
+
+So, you want to know the following:
+
+* Media of yesterday's pressure
+* List of today's frequency
+* Graphic representation of recent measurements
+
+Please let me know which one you want me to answer.""" "GENERALE -1 LISTA"

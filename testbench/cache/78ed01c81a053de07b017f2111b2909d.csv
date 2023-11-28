@@ -1,0 +1,7 @@
+"""Okay, I'll do my best to help you! Here are the three parameters I extract from your message:
+
+1. Quantità: 0 (today)
+2. Formato: lista
+3. Misura: none (you want to see the most recent data)
+
+So, based on your input, I will provide you with a list of the most recent measurements for both pressure and frequency.""" "ENTRAMBI 0 LISTA"
