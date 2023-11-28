@@ -22,11 +22,9 @@ class Statistics:
     @property
     def confusion_matrix(self) -> pd.DataFrame:
         unique_categories = sorted(list(set([result.expected for result in self.results])))
-        matrix = pd.DataFrame(0, index=unique_categories, columns=unique_categories + ['altro'])
+        matrix = pd.DataFrame(0, index=unique_categories, columns=unique_categories)
         for result in self.results:
             r_out = result.output
-            if result.output not in unique_categories:
-                r_out = 'altro'
             matrix.loc[result.expected, r_out] += 1
         return matrix
 
@@ -46,7 +44,7 @@ def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]]) ->
             reader = csv.reader(f, delimiter=' ')
             for idx, line in enumerate(reader):
                 output, expected = line
-                results[model_names[idx]].append(RequestResult(output, expected))
+                results[model_names[idx]].append(SmartResult(output, expected))
     return [Statistics(result_list) for result_list in results.values()]
 
 

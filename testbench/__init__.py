@@ -88,6 +88,7 @@ class RequestResult(SmartResult):
             return self._output.split(" ")[key]
         else:
             return ""
+
     def _get_expected(self, key: int) -> str:
         return self._expected.split(" ")[key]
 
@@ -160,7 +161,7 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
                             message = f'Invalid line in cache file: {line}\n in file {file_name}, line {idx}, length {len(line)}'
                             raise ValueError(message)
                         output, expected = line
-                        responses.append(Result(output, expected))
+                        responses.append(SmartResult(output, expected))
                 result.append((question, responses))
                 continue
             # ask model
@@ -176,14 +177,14 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
                             # Check if reply is a valid class
                             if SmartResult._clean_string(reply.output) not in classes:
                                 # Randomly pick a class
-                                reply = Result(random.choice(classes), expected)
+                                reply = SmartResult(random.choice(classes), expected)
                     responses.append(reply)
                     logger.info(f'{reply.to_csv()}')
                 result.append((question, responses))
             disable_file_logging()
         else:
             for model in models:
-                responses.append(Result(ask_model(model, question), expected))
+                responses.append(SmartResult(ask_model(model, question), expected))
             result.append((question, responses))
     return result
 
