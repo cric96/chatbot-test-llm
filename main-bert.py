@@ -28,3 +28,4 @@ if __name__ == '__main__':
                     mean_value = np.mean(np.array(values))
                     results[metric] = mean_value
                 logger.info(f'{name} results: {results}')
+

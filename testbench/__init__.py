@@ -8,6 +8,7 @@ from collections.abc import Iterable
 from pydoc import locate
 from ._logging import *
 import io
+from evaluate import load
 
 def csv_formatter(string):
     outstream = io.StringIO()   # "fake" output file
@@ -17,7 +18,7 @@ def csv_formatter(string):
 
 PATH = Path(__file__).parents[0]
 CACHE = PATH / 'cache'
-
+BERT_SCORE = load('bertscore')
 
 class BenchTarget:
     def __init__(self, provider: LanguageModelProvider, models: list[str], system: str, classes: list[str] = None):
@@ -48,9 +49,10 @@ class Result:
     def one_by_one_comparison(self) -> tuple[bool, bool, bool]:
         raise NotImplementedError
 
-    def __str__(self):
+    def bert_comparison(self):
+        return BERT_SCORE.compute(predictions=[self.output], references=[self.expected], lang="it")
+    def __repr__(self):
         return f'Output: {self.output}, Expected: {self.expected}, Correct: {self.correct}'
-
     def to_csv(self):
         return f'{csv_formatter(self.output)} {csv_formatter(self.expected)}'
 

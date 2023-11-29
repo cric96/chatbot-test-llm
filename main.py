@@ -49,4 +49,18 @@ if __name__ == '__main__':
                         plt.ylabel('Actual')
                         plt.savefig(f'confusion_matrix.png')
 
+            ### bert score, each element is a dictionary with the following keys: precision, recall, f1
+            scores = []
+            for report in reports:
+                for question, responses in report:
+                    logger.info(f'Question: {question}')
+                    for response in responses:
+                        bert_score = response.bert_comparison()
+                        logger.info(f'Score: {bert_score}')
+                        scores.append(bert_score)
+                ## Compute average for each key
+                precision = sum([score['precision'][0] for score in scores]) / len(scores)
+                recall = sum([score['recall'][0] for score in scores]) / len(scores)
+                f1 = sum([score['f1'][0] for score in scores]) / len(scores)
+                print(f'Precision: {precision}, Recall: {recall}, F1: {f1}')
 
