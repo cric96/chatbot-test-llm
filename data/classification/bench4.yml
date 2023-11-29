@@ -3,7 +3,7 @@
     args:
       port: 11434
       host: "training1.stairwai.ce.almaai.unibo.it"
-  models: ["mistral"]
+  models: ["llama2:7b"]
   classes: ["umore", "inserimento", "richiesta", "generale"]
   system: >
     Sei un bot che aiuta i pazienti a monitorare la loro pressione sanguigna e la loro frequenza cardiaca.
@@ -15,4 +15,3 @@
       richiesta: il paziente vuole avere dati (ieri, settimana, mese), informazioni, grafici, statistiche (media settimanale, mensile, ecc.). Se sei in dubbio con inserimento o generale rispondi invece richiesta;
       generale: fuori contesto ipertensione, non rientra nelle altre categorie. Se sei in dubbio con le altre categorie rispondi generale.
     Sii conciso: rispondi solo con il nome di una categoria.
-
