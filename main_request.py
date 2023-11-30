@@ -2,7 +2,7 @@ import argparse
 import yaml
 import csv
 import os
-from analysis import analise_target
+from analysis import analise_target, analise_request
 from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_INFO
 from testbench.logging import INDENT, LOG_FLOAT_PRECISION
 
@@ -11,6 +11,7 @@ parser = argparse.ArgumentParser(description='LLM comparison for sentiment analy
 parser.add_argument('--data-file', type=str, default='./data/request/test.csv', help='input file path')
 parser.add_argument('--bench-file', type=str, default='./data/request/bench.yml', help='benchmark configuration path')
 enable_logging(level=LOG_INFO)
+
 
 if __name__ == '__main__':
     args = parser.parse_args()
@@ -39,3 +40,13 @@ if __name__ == '__main__':
                                 f'\n\tmeasure: {measure:.{LOG_FLOAT_PRECISION}f}'
                                 f'\n\tquantity: {quantity:.{LOG_FLOAT_PRECISION}f}'
                                 f'\n\tformat: {format:.{LOG_FLOAT_PRECISION}f}\n')
+
+            # ChatGPT
+            statistics = list(analise_request(data))
+            for models_statistics in statistics:
+                measure, quantity, format = models_statistics.one_by_one_accuracy
+                logger.info(f'Results: for ChatGPT3.5:'
+                            f'\n\taccuracy: {models_statistics.accuracy:.{LOG_FLOAT_PRECISION}f}'
+                            f'\n\tmeasure: {measure:.{LOG_FLOAT_PRECISION}f}'
+                            f'\n\tquantity: {quantity:.{LOG_FLOAT_PRECISION}f}'
+                            f'\n\tformat: {format:.{LOG_FLOAT_PRECISION}f}\n')

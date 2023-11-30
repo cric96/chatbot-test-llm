@@ -55,7 +55,7 @@ def analise_request(knowledge: Iterable[tuple[str, str]]) -> Iterable[Statistics
     for (question, expected, gpt) in knowledge:
         # expected_measure, expected_quantity, expected_format = expected.split()
         if len(gpt.split()) != 3:
-            results['gpt'].append(RequestResult('altro altro altro', expected))
+            results['gpt'].append(RequestResult(f'{RequestResult.default_measure} {RequestResult.default_quantity} {RequestResult.default_format}', expected))
             continue
         # pgt_measure, pgt_quantity, pgt_format = gpt.split()
         results['gpt'].append(RequestResult(gpt, expected))
