@@ -1,2 +1,0 @@
-- name: ollama
-  file: data/general/general-test.csv
