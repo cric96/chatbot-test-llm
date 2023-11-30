@@ -4,7 +4,7 @@ import csv
 import os
 from analysis import analise_target
 from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_INFO
-from testbench._logging import INDENT, LOG_FLOAT_PRECISION
+from testbench.logging import INDENT, LOG_FLOAT_PRECISION
 
 
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
