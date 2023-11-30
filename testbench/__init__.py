@@ -1,3 +1,4 @@
+from __future__ import annotations
 import csv
 import random
 import re
@@ -10,15 +11,18 @@ from .logging import *
 import io
 from evaluate import load
 
-def csv_formatter(string):
-    outstream = io.StringIO()   # "fake" output file
-    cw = csv.writer(outstream, quoting=csv.QUOTE_ALL, lineterminator="")  # pass the fake file to csv module
-    cw.writerow([string])       # write a row
-    return outstream.getvalue()
 
 PATH = Path(__file__).parents[0]
 CACHE = PATH / 'cache'
 BERT_SCORE = load('bertscore')
+
+
+def csv_formatter(string):
+    outstream = io.StringIO()  # "fake" output file
+    cw = csv.writer(outstream, quoting=csv.QUOTE_ALL, lineterminator="")  # pass the fake file to csv module
+    cw.writerow([string])  # write a row
+    return outstream.getvalue()
+
 
 class BenchTarget:
     def __init__(self, provider: LanguageModelProvider, models: list[str], system: str, classes: list[str] = None):
@@ -26,6 +30,12 @@ class BenchTarget:
         self.models = models
         self.system = system
         self.classes = classes
+
+    def new_target(self, model: str | list[str]) -> BenchTarget:
+        if isinstance(model, str):
+            return BenchTarget(self.provider, [model], self.system, self.classes)
+        elif isinstance(model, list):
+            return BenchTarget(self.provider, model, self.system, self.classes)
 
 
 class Result:
@@ -51,8 +61,10 @@ class Result:
 
     def bert_comparison(self):
         return BERT_SCORE.compute(predictions=[self.output], references=[self.expected], lang="it")
+
     def __repr__(self):
         return f'Output: {self.output}, Expected: {self.expected}, Correct: {self.correct}'
+
     def to_csv(self):
         return f'{csv_formatter(self.output)} {csv_formatter(self.expected)}'
 
@@ -77,7 +89,6 @@ class SmartResult(Result):
 
 
 class RequestResult(SmartResult):
-
     legal_measures = ['frequenza', 'pressione', 'entrambi', 'generale']
     legal_formats = ['media', 'lista', 'grafico']
     default_measure = 'generale'
@@ -90,6 +101,7 @@ class RequestResult(SmartResult):
             return self._output.split(" ")[key]
         else:
             return ""
+
     def _get_expected(self, key: int) -> str:
         return self._expected.split(" ")[key]
 
@@ -126,8 +138,8 @@ class RequestResult(SmartResult):
         return self.measure_comparison and self.quantity_comparison and self.format_comparison
 
 
-def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_cache: bool = True) -> Iterable[(str, list[Result])]:
-
+def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_cache: bool = True) -> Iterable[
+    (str, list[Result])]:
     def ask_model(local_model: LanguageModel, local_question: str) -> str:
         logger.debug(f'Asking "{local_question}"')
         return local_model.ask(local_question)
@@ -191,5 +203,3 @@ def target_from_object(obj: dict) -> BenchTarget:
     system = obj['system']
     classes = obj['classes']
     return BenchTarget(provider, models, system, classes)
-
-
