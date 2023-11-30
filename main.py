@@ -1,4 +1,5 @@
 import argparse
+import pandas as pd
 import yaml
 import csv
 import os
@@ -13,6 +14,11 @@ parser = argparse.ArgumentParser(description='LLM comparison for sentiment analy
 parser.add_argument('--data-file', type=str, default='./data/classification/sentences4-test.csv', help='input file path')
 parser.add_argument('--bench-file', type=str, default='./data/classification/bench4.yml', help='benchmark configuration path')
 enable_logging(level=LOG_DEBUG)
+
+nas_bert_confusion_matrix = [[59, 3, 1, 0],
+                             [1, 82, 0, 0],
+                             [1, 0, 84, 0],
+                             [1, 1, 1, 16]]
 
 if __name__ == '__main__':
     args = parser.parse_args()
@@ -36,14 +42,30 @@ if __name__ == '__main__':
             for models_statistics in statistics:
                 for model_statistics in models_statistics:
                     logger.info('')
-                    logger.info(f'accuracy: {(model_statistics.accuracy):.{LOG_FLOAT_PRECISION}f}')
-                    logger.info(f'confusion matrix: {model_statistics.confusion_matrix}')
+                    accuracy = model_statistics.accuracy
+                    logger.info(f'accuracy: {accuracy :.{LOG_FLOAT_PRECISION}f}')
+                    cm = pd.DataFrame(nas_bert_confusion_matrix) # model_statistics.confusion_matrix
+                    # columns and rows names into english
+                    eng_names = ['General', 'Insertion', 'Request', 'Mood']
+                    cm.columns, cm.index = eng_names, eng_names
+                    # Add precision and recall
+                    recalls = list(cm.apply(lambda row: row[row.name] / row.sum(), axis=0))
+                    precisions = list(cm.apply(lambda col: col[col.name] / col.sum(), axis=1))
+                    recalls.append(0)
+                    precisions.append(0)
+
+                    cm_with_pr = pd.DataFrame(columns=eng_names+['Recall'], index=eng_names+['Precision'], dtype=float)
+                    cm_with_pr.iloc[0:4, 0:4] = cm
+                    cm_with_pr['Recall'] = recalls
+                    cm_with_pr.loc['Precision'] = precisions
+                    logger.info(f'confusion matrix:\n {cm_with_pr}')
                     if generate_plot:
                         # plot confusion matrix and save it
+                        sn.set(font_scale=1.4)
                         plt.figure()
-                        sn.heatmap(model_statistics.confusion_matrix, annot=True, fmt='g')
+                        sn.heatmap(cm, annot=True, fmt='g')
                         plt.xlabel('Predicted')
                         plt.ylabel('Actual')
-                        plt.savefig(f'confusion_matrix.png')
+                        plt.savefig(f'confusion_matrix.png', bbox_inches='tight')
 
 
