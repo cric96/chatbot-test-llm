@@ -10,8 +10,8 @@ from testbench._logging import INDENT, LOG_FLOAT_PRECISION
 
 generate_plot = False
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
-parser.add_argument('--data-file', type=str, default='./data/request/request-test.csv', help='input file path')
-parser.add_argument('--bench-file', type=str, default='./data/request/bench3params.yml', help='benchmark configuration path')
+parser.add_argument('--data-file', type=str, default='./data/general/general-test.csv', help='input file path')
+parser.add_argument('--bench-file', type=str, default='./data/general/bench.yml', help='benchmark configuration path')
 enable_logging(level=LOG_DEBUG)
 
 if __name__ == '__main__':
