@@ -13,7 +13,8 @@ class OllamaService(LanguageModelProvider):
         return OllamaLanguageModel(self.host, self.port, language_model, system_prompt)
 
 
-# A language model that uses the Ollama API to generate text based on the REST API described here: https://github.com/jmorganca/ollama/blob/main/docs/api.md
+# A language model that uses the Ollama API to generate text based on the REST API
+# described here: https://github.com/jmorganca/ollama/blob/main/docs/api.md
 class OllamaLanguageModel(LanguageModel):
     def __init__(self, host: str, port: int, name: str, system: str):
         self.host = host

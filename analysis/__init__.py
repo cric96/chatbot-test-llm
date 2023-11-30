@@ -45,7 +45,7 @@ def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]]) ->
             # for each line create a result
             reader = csv.reader(f, delimiter=' ')
             for idx, line in enumerate(reader):
-                output, expected = line
+                output, _ = line
                 results[model_names[idx]].append(RequestResult(output, expected))
     return [Statistics(result_list) for result_list in results.values()]
 

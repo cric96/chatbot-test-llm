@@ -6,7 +6,7 @@ from pathlib import Path
 from core import LanguageModelProvider, LanguageModel
 from collections.abc import Iterable
 from pydoc import locate
-from ._logging import *
+from .logging import *
 import io
 from evaluate import load
 
