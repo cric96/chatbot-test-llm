@@ -138,13 +138,16 @@ class RequestResult(SmartResult):
         return self.measure_comparison and self.quantity_comparison and self.format_comparison
 
 
-def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_cache: bool = True) -> Iterable[
-    (str, list[Result])]:
+def evaluate_target(target: BenchTarget,
+                    knowledge: Iterable[(str, str)],
+                    use_cache: bool = True,
+                    classification: bool = False) -> Iterable[(str, list[Result])]:
     def ask_model(local_model: LanguageModel, local_question: str) -> str:
         logger.debug(f'Asking "{local_question}"')
         return local_model.ask(local_question)
 
     # for each knowledge pair, ask each model
+    result_class = SmartResult if classification else RequestResult
     result = []
     models = [target.provider.use(model, target.system) for model in target.models]
     classes = target.classes
@@ -168,7 +171,7 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
                             message = f'Invalid line in cache file: {line}\n in file {file_name}, line {idx}, length {len(line)}'
                             raise ValueError(message)
                         output, expected = line
-                        responses.append(Result(output, expected))
+                        responses.append(result_class(output, expected))
                 result.append((question, responses))
                 continue
             # ask model
@@ -178,20 +181,20 @@ def evaluate_target(target: BenchTarget, knowledge: Iterable[(str, str)], use_ca
                     reply = Result(ask_model(model, question), expected)
                     # Check if reply is a valid class
                     if classes is not None:
-                        if SmartResult._clean_string(reply.output) not in classes:
+                        if result_class._clean_string(reply.output) not in classes:
                             # Retry
                             reply = Result(ask_model(model, question), expected)
                             # Check if reply is a valid class
-                            if SmartResult._clean_string(reply.output) not in classes:
+                            if result_class._clean_string(reply.output) not in classes:
                                 # Randomly pick a class
-                                reply = Result(random.choice(classes), expected)
+                                reply = result_class(random.choice(classes), expected)
                     responses.append(reply)
                     logger.info(f'{reply.to_csv()}')
                 result.append((question, responses))
             disable_file_logging()
         else:
             for model in models:
-                responses.append(Result(ask_model(model, question), expected))
+                responses.append(result_class(ask_model(model, question), expected))
             result.append((question, responses))
     return result
 

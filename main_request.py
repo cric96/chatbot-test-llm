@@ -38,4 +38,4 @@ if __name__ == '__main__':
                                 f'\n\taccuracy: {model_statistics.accuracy :.{LOG_FLOAT_PRECISION}f}'
                                 f'\n\tmeasure: {measure:.{LOG_FLOAT_PRECISION}f}'
                                 f'\n\tquantity: {quantity:.{LOG_FLOAT_PRECISION}f}'
-                                f'\n\tformat: {format:.{LOG_FLOAT_PRECISION}f}')
+                                f'\n\tformat: {format:.{LOG_FLOAT_PRECISION}f}\n')

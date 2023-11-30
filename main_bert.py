@@ -49,4 +49,4 @@ if __name__ == '__main__':
                 logger.info(f'Results for {targets[idx].models[0]}:'
                             f'\n\tPrecision: {precision:.{LOG_FLOAT_PRECISION}f}'
                             f'\n\tRecall: {recall:.{LOG_FLOAT_PRECISION}f}'
-                            f'\n\tF1: {f1:.{LOG_FLOAT_PRECISION}f}')
+                            f'\n\tF1: {f1:.{LOG_FLOAT_PRECISION}f}\n')

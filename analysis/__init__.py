@@ -22,16 +22,15 @@ class Statistics:
     @property
     def confusion_matrix(self) -> pd.DataFrame:
         unique_categories = sorted(list(set([result.expected for result in self.results])))
-        matrix = pd.DataFrame(0, index=unique_categories, columns=unique_categories + ['altro'])
+        matrix = pd.DataFrame(0, index=unique_categories, columns=unique_categories)
         for result in self.results:
             r_out = result.output
-            if result.output not in unique_categories:
-                r_out = 'altro'
             matrix.loc[result.expected, r_out] += 1
         return matrix
 
 
-def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]]) -> Iterable[Statistics]:
+def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]], classification: bool = False) -> Iterable[Statistics]:
+    result_class = SmartResult if classification else RequestResult
     # for each knowledge pair, ask each model
     model_names = [model for model in target.models]
     results = {model: [] for model in model_names}
@@ -46,7 +45,7 @@ def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]]) ->
             reader = csv.reader(f, delimiter=' ')
             for idx, line in enumerate(reader):
                 output, _ = line
-                results[model_names[idx]].append(RequestResult(output, expected))
+                results[model_names[idx]].append(result_class(output, expected))
     return [Statistics(result_list) for result_list in results.values()]
 
 

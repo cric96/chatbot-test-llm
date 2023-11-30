@@ -10,8 +10,8 @@ from testbench._logging import LOG_FLOAT_PRECISION
 
 
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
-parser.add_argument('--data-file', type=str, default='../data/request/request-test.csv', help='input file path')
-parser.add_argument('--bench-file', type=str, default='../data/request/bench3params.yml', help='benchmark configuration path')
+parser.add_argument('--data-file', type=str, default='../data/classification/sentences4.csv', help='input file path')
+parser.add_argument('--bench-file', type=str, default='../data/classification/bench4.yml', help='benchmark configuration path')
 enable_logging(level=LOG_DEBUG)
 
 if __name__ == '__main__':
@@ -27,10 +27,6 @@ if __name__ == '__main__':
             for models_statistics in statistics:
                 for model_statistics in models_statistics:
                     logger.info(f'accuracy: {(model_statistics.accuracy):.{LOG_FLOAT_PRECISION}f}')
-                    measure, quantity, format = model_statistics.one_by_one_accuracy
-                    logger.info(f'measure: {measure:.{LOG_FLOAT_PRECISION}f}')
-                    logger.info(f'quantity: {quantity:.{LOG_FLOAT_PRECISION}f}')
-                    logger.info(f'format: {format:.{LOG_FLOAT_PRECISION}f}')
-                    # plot confusion matrix and save it
+                    logger.info(f'confusion matrix: {model_statistics.confusion_matrix}')
 
 
