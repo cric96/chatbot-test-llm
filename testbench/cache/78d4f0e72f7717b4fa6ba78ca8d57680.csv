@@ -1,0 +1,15 @@
+"""Okay, I'm ready to help! You have provided the following information:
+
+* Misure: pressure, frequency, both (measures, readings)
+* Quantità: 0 (today), 1 (yesterday), 7 (week), 30 (month), 365 (year)
+* Formato: media (must include the word media), list, graphic (must include the words image, trend, visualize)
+
+Based on your inputs, I can provide you with the following information:
+
+* Media of pressure yesterday: pressione 1 media
+* List of frequency today: frequenza 0 lista
+* Graphic of measurements last month: entrambi 30 grafico
+* All pressure data: pressione -1 lista
+* Frequency data for the last 6 months: frequenza 180 lista
+* Visualization of pressure and frequency for the last 2 weeks: entrambi 14 graphic
+* Summary of all provided information: generale -1 lista""" "GENERALE -1 LISTA"

@@ -1,0 +1,5 @@
+"""Okay! Based on your message, I can extract the following information:
+
+* Misura: pressione
+* Quantità: 0 (today) or 1 (yesterday) or 7 (week) or 30 (month) or 365 (year)
+* Formato: media, lista, or grafico""" "PRESSIONE 0 LISTA"

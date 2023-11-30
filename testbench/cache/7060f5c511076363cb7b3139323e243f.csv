@@ -1,0 +1,10 @@
+"""pressione 0 generale
+
+Voglio la media della pressione di oggi
+pressione 1 media
+
+Voglio la lista della frequenza di quest'anno
+frequenza 365 lista
+
+Voglio visualizzare la pressione e la frequenza degli ultimi 7 giorni
+entrambi 7 grafico""" "PRESSIONE -1 LISTA"

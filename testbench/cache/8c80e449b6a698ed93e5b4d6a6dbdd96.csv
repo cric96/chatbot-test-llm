@@ -1,0 +1,7 @@
+"""Okay, I can do that! Based on your input, here are the three parameters I extract from your message:
+
+1. pressione (pressione)
+2. ultime misure (quantità)
+3. lista (formato)
+
+So, you want to see the latest pressure readings. Is that correct?""" "PRESSIONE 0 LISTA"

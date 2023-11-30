@@ -1,0 +1,5 @@
+"""Okay! Here are the three parameters I can extract from your message:
+
+* Misura: pressura (pressione)
+* Quantità: 7 (settimana)
+* Formato: lista (you want a list of measurements)""" "PRESSIONE 7 LISTA"
