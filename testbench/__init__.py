@@ -1,3 +1,4 @@
+from __future__ import annotations
 import csv
 import random
 import re
@@ -25,6 +26,12 @@ class BenchTarget:
         self.models = models
         self.system = system
         self.classes = classes
+
+    def new_target(self, model: str | list[str]) -> BenchTarget:
+        if isinstance(model, str):
+            return BenchTarget(self.provider, [model], self.system, self.classes)
+        elif isinstance(model, list):
+            return BenchTarget(self.provider, model, self.system, self.classes)
 
 
 class Result:
