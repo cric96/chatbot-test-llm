@@ -1,0 +1,6 @@
+"""
+OK, ecco i tre parametri da estrarre dal tuo messaggio:
+
+* Quantità: -1 (tutto lo storico)
+* Formato: lista
+* Misura: generale""" "GENERALE -1 LISTA"

@@ -2,7 +2,7 @@
     name: "ollama.OllamaService"
     args:
       port: 11434
-      host: "training4.stairwai.ce.almaai.unibo.it"
+      host: "inference1.stairwai.ce.almaai.unibo.it"
   models: ["llama2:70b", "llama2:13b", "llama2:7b", "mistral"]
   classes:
   system: >
