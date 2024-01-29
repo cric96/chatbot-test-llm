@@ -81,11 +81,11 @@ class SmartResult(Result):
 
     @property
     def output(self) -> str:
-        return self._clean_string(self._output)
+        return self._output
 
     @property
     def expected(self) -> str:
-        return self._clean_string(self._expected)
+        return self._expected
 
 
 class RequestResult(SmartResult):
