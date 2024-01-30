@@ -2,8 +2,8 @@
     name: "ollama.OllamaService"
     args:
       port: 11434
-      host: "inference1.stairwai.ce.almaai.unibo.it"
-  models: ["llama2:70b", "llama2:13b", "llama2:7b", "mistral"]
+      host: "clusters.almaai.unibo.it"
+  models: ["llama2:70b", "llama2:13b", "llama2:7b", "mistral", "mixtral"]
   classes: ["umore", "inserimento", "richiesta", "generale"]
   system: >
     Sei un bot che aiuta i pazienti a monitorare la loro pressione sanguigna e la loro frequenza cardiaca.
