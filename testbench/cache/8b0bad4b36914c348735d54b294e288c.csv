@@ -1,0 +1,2 @@
+""" frequenza 0 singolo
+(Il parametro quantità è impostato a 0 per indicare l'ultima misurazione, mentre il formato è singolo poiché si richiede solo l'ultimo valore di frequenza cardiaca e non una lista o un grafico)""" "FREQUENZA 0 LISTA"

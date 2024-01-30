@@ -21,11 +21,10 @@ class Statistics:
 
     @property
     def confusion_matrix(self) -> pd.DataFrame:
-        unique_categories = sorted(list(set([result.expected for result in self.results])))
+        unique_categories = sorted(list(set([result.clean_expected for result in self.results])))
         matrix = pd.DataFrame(0, index=unique_categories, columns=unique_categories)
         for result in self.results:
-            r_out = result.output
-            matrix.loc[result.expected, r_out] += 1
+            matrix.loc[result.clean_expected, result.clean_output] += 1
         return matrix
 
 

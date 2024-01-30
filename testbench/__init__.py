@@ -48,12 +48,19 @@ class Result:
         return self._output
 
     @property
+    def clean_output(self) -> str:
+        return self._output
+
+    @property
     def expected(self) -> str:
+        return self._expected
+
+    def clean_expected(self) -> str:
         return self._expected
 
     @property
     def correct(self) -> bool:
-        return self.output == self.expected
+        return self.clean_output == self.clean_expected
 
     @property
     def one_by_one_comparison(self) -> tuple[bool, bool, bool]:
@@ -84,8 +91,16 @@ class SmartResult(Result):
         return self._output
 
     @property
+    def clean_output(self) -> str:
+        return self._clean_string(self._output)
+
+    @property
     def expected(self) -> str:
         return self._expected
+
+    @property
+    def clean_expected(self) -> str:
+        return self._clean_string(self._expected)
 
 
 class RequestResult(SmartResult):
