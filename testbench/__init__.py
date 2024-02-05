@@ -188,6 +188,8 @@ def evaluate_target(target: BenchTarget,
                         output, expected = line
                         responses.append(result_class(output, expected))
                 result.append((question, responses))
+                if len(responses) != len(models):
+                    raise ValueError(f'Cache file {file_name} has {len(responses)} responses, but {len(models)} are expected')
                 continue
             # ask model
             else:
