@@ -177,7 +177,7 @@ def evaluate_target(target: BenchTarget,
             hash_file_name = md5(hyperparameters.encode()).hexdigest() + '.csv'
             file_name = CACHE / hash_file_name
             if file_name.is_file():
-                # read from cache
+                # read from ca
                 with open(file_name, 'r') as f:
                     # for each line create a result
                     reader = csv.reader(f, delimiter=' ')

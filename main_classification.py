@@ -9,6 +9,8 @@ from analysis import analise_target
 from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_INFO
 from testbench.logging import INDENT, LOG_FLOAT_PRECISION
 
+
+LATEX_FLOAT_PRECISION = 2
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
 parser.add_argument('--data-file', type=str, default='./data/classification/test.csv', help='input file path')
 parser.add_argument('--bench-file', type=str, default='./data/classification/bench.yml',
@@ -64,14 +66,49 @@ if __name__ == '__main__':
                         logger.debug(f'{INDENT}Output: {response._output}')
                         logger.debug(f'{INDENT}Expected: {response._expected}')
             statistics = [analise_target(target, data, classification=True) for target in targets]
+            cms = []
             for idx, models_statistics in enumerate(statistics):
                 for model_statistics in models_statistics:
                     accuracy = model_statistics.accuracy
                     logger.info(f'Accuracy for {targets[idx].models[0]}: {accuracy :.{LOG_FLOAT_PRECISION}f}')
                     cm = model_statistics.confusion_matrix
+                    cms.append(cm)
                     plot_data(cm, targets[idx].models[0])
 
             # NAS-BERT
             cm = pd.DataFrame(nas_bert_confusion_matrix)
             logger.info(f'Accuracy for nas_bert: {cm.values.diagonal().sum() / cm.values.sum() :.{LOG_FLOAT_PRECISION}f}')
             plot_data(cm, 'nas_bert')
+            cms.append(cm)
+
+            # Generate Latex table with precision and recall metrics for all 4 categories plus the overall accuracy
+            with open('classification_test_results.tex', 'w') as f:
+                f.write('\\begin{table*}[]\n\\centering\n\\resizebox{\\textwidth}{!}{\n')
+                f.write('\\begin{tabular}{|l|rrrr|rrrr|r|}\n')
+                f.write('\\hline\n')
+                f.write('\\multicolumn{1}{|c|}{\\multirow{2}{*}{Model}} & \\multicolumn{4}{c|}{Precision} & \\multicolumn{4}{c|}{Recall} & \\multicolumn{1}{l|}{\\multirow{2}{*}{Accuracy}} \\\\ \\cline{2-9}\n')
+                f.write('\\multicolumn{1}{|c|}{} & \\multicolumn{1}{l|}{General} & \\multicolumn{1}{l|}{Insertion} & \\multicolumn{1}{l|}{Request} & \\multicolumn{1}{l|}{Mood} & \\multicolumn{1}{l|}{General} & \\multicolumn{1}{l|}{Insertion} & \\multicolumn{1}{l|}{Request} & \\multicolumn{1}{l|}{Mood} & \\multicolumn{1}{l|}{} \\\\ \\hline\n')
+                for idx, model in enumerate(targets):
+                    if idx % 2 == 0:
+                        f.write('\\rowcolor[HTML]{EFEFEF}\n')
+                    f.write(f'{model.models[0].capitalize()} & ')
+                    for i in range(4):
+                        f.write('\\multicolumn{1}{r|}{' + f'{cms[idx].iloc[i, i] / cms[idx].iloc[i, :].sum() :.{LATEX_FLOAT_PRECISION}f}' + '} & ')
+                    for i in range(4):
+                        f.write('\\multicolumn{1}{r|}{' + f'{cms[idx].iloc[i, i] / cms[idx].iloc[:, i].sum() :.{LATEX_FLOAT_PRECISION}f}' + '} & ')
+                    f.write(f'{cms[idx].values.diagonal().sum() / cms[idx].values.sum() :.{LATEX_FLOAT_PRECISION}f} \\\\ \\hline\n')
+                if (idx + 1) % 2 == 0:
+                    f.write('\\rowcolor[HTML]{EFEFEF}\n')
+                f.write(f'ML.NET~2.0 framework & ')
+                for i in range(4):
+                    f.write('\\multicolumn{1}{r|}{' + f'{cms[-1].iloc[i, i] / cms[-1].iloc[i, :].sum() :.{LATEX_FLOAT_PRECISION}f}' + '} & ')
+                for i in range(4):
+                    f.write('\\multicolumn{1}{r|}{' + f'{cms[-1].iloc[i, i] / cms[-1].iloc[:, i].sum() :.{LATEX_FLOAT_PRECISION}f}' + '} & ')
+                f.write(f'{cms[-1].values.diagonal().sum() / cms[-1].values.sum() :.{LATEX_FLOAT_PRECISION}f} \\\\ \\hline\n')
+                f.write('\\end{tabular}\n')
+                f.write('}\n\\caption{Results of the classification phase for all messages.\n%\n'
+                        'Models used in the experiments are reported in the first column.\n%\n'
+                        'The next two macro columns -- precision and recall -- report the corresponding metric per single class (general, insertion, request and mood).\n%\n'
+                        'The last column shows the overall accuracy of the models.}\n\\label{categorization:results}\n\\end{table*}\n')
+            logger.info('Classification test results saved to classification_test_results.tex')
+            logger.info('Done')

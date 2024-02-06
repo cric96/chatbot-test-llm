@@ -1,6 +1,8 @@
 *.png
 .DB_Store
 general_responses.csv
+bert_score.tex
+classification_test_results.tex
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij+all
