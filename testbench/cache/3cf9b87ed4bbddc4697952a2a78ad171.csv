@@ -1,0 +1,5 @@
+"""1. Estraiamo il parametro misura dal messaggio del paziente: pressione sanguigna e frequenza cardiaca. Quindi, il valore di misura è entrambi.
+2. Estraiamo il parametro quantità dal messaggio: ultimi 30 giorni. Quindi, il valore di quantità è 30.
+3. Estraiamo il parametro formato dal messaggio: media. Quindi, il valore di formato è media.
+
+Risposta: entrambi 30 media.""" "ENTRAMBI 30 MEDIA"

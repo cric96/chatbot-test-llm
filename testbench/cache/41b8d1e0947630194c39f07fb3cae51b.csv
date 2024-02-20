@@ -1,0 +1,14 @@
+"""
+
+Riepilogo delle tue richieste:
+
+1. Voglio la media della pressione di ieri -> pressione 1 media.
+2. Lista della frequenza di oggi? -> frequenza 0 lista.
+3. Grafico delle misure dell'ultimo mese -> entrambi 30 grafico.
+4. Tutti i dati della pressione -> pressione -1 lista.
+5. Voglio sapere la frequenza degli ultimi 6 mesi -> frequenza 180 lista.
+6. Volgio visualizzare pressione e frequenza delle ultime due settimane -> entrambi 14 grafico.
+7. Riassunto di tutte le informazioni che ho fornito finora -> generale -1 lista.
+8. Mi ricordi l'ultima misurazione fatta sulla frequenza -> frequenza 0 lista.
+
+Per la tua richiesta numero 9, ti riporto di seguito l'ultimo valore della frequenza registrato: frequenza 0 lista.""" "FREQUENZA 0 LISTA"

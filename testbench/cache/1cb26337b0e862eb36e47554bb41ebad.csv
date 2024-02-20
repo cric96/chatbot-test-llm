@@ -1,0 +1,4 @@
+"""1. misura: pressione
+2. quantità: non specificato, quindi prendiamo oggi / ultime misure = 0
+3. formato: non specificato, quindi prendiamo lista come predefinito
+Risposta: pressione 0 lista""" "PRESSIONE -1 LISTA"

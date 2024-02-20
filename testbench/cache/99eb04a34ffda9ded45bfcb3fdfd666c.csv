@@ -1,0 +1,8 @@
+"""1. estrai il parametro misura dal messaggio:
+letture della pressione indica che il paziente vuole visualizzare i dati relativi alla pressione (pressione).
+2. estrai il parametto quantità dal messaggio:
+ultimo mese corrisponde a 30 giorni.
+3. estrai il parametro formato dal messaggio:
+Il paziente non specifica esplicitamente un formato preferito, perciò rispondiamo con il valore predefinito lista.
+
+Risposta: pressione 30 lista.""" "PRESSIONE 30 LISTA"

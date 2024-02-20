@@ -1,0 +1,7 @@
+"""1) Leggi attentamente il messaggio del paziente: Vorrei rivedere i dati più recenti sulla pressione che ho inserito.
+2) Estrai i parametri:
+	* misura: pressione
+	* quantità: ultime, oggi / ultime misure = 0, quindi 0 giorni.
+	* formato: non specificato, utilizza il valore predefinito lista.
+3) Rispondi con i tre parametri estratti separati da spazio:
+pressione 0 lista""" "PRESSIONE 0 LISTA"

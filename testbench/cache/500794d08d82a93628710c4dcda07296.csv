@@ -1,0 +1,5 @@
+"""1. frequenza - misura richiesta è la frequenza cardiaca;
+2. 30 - quantità corrisponde al numero di giorni da considerare, in questo caso un mese;
+3. lista - formato desiderato è una lista.
+
+Risposta: frequenza 30 lista.""" "FREQUENZA 30 LISTA"

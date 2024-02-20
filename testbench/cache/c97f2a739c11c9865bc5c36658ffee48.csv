@@ -1,0 +1,8 @@
+"""1. Estrazione dei parametri:
+	misura: entrambi (sia pressione che frequenza)
+	quantità: 0 (ultime misure = oggi)
+	formato: lista (richiesto esplicitamente i dati più recenti)
+2. Risposta:
+```
+entrambi 0 lista
+```""" "ENTRAMBI 0 LISTA"

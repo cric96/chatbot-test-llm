@@ -1,0 +1,8 @@
+"""2023-03-15 10:00:00 | pressione 120/80 | frequenza 70
+2023-03-14 20:00:00 | pressione 115/75 | frequenza 65
+2020-03-14 10:00:00 | pressione 125/85 | frequenza 75
+2023-03-13 22:00:00 | pressione 120/80 | frequenza 72
+...
+2023-03-01 09:00:00 | pressione 110/70 | frequenza 60
+...
+(Esegui il pull delle ultime 50 righe della tabella `measurements` in MySQL)""" "ENTRAMBI -1 LISTA"

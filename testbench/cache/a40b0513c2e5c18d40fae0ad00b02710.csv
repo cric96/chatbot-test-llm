@@ -1,0 +1,7 @@
+"""3 parametri da estrarre dal messaggio del paziente:
+
+misura: generale (richiesta di dati generici, non specifici);
+quantità: non specificato (default a 0 = ultime misure, oggi);
+formato: lista (richiesta esplicita di una lista).
+
+Risposta: generale 0 lista.""" "GENERALE -1 LISTA"

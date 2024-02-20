@@ -1,0 +1,5 @@
+"""1. Estrai la misura: pressione e frequenza.
+2. Estrai la quantità: tutto lo storico, quindi -1.
+3. Estrai il formato: hai chiesto per un grafico, quindi grafico.
+
+Risposta: entrambi -1 grafico""" "ENTRAMBI -1 GRAFICO"

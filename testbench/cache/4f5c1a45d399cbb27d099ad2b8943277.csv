@@ -1,0 +1,6 @@
+"""1. Estrazione dei parametri:
+misura: entrambi (dato che si richiedono sia la pressione che la frequenza)
+quantità: 365 x 3 = 1095 (poiché si tratta di tre anni interi)
+formato: media (dato che si richiede la media)
+2. Risposta:
+entrambi 1095 media""" "ENTRAMBI 1095 MEDIA"
