@@ -3,7 +3,17 @@
     args:
       port: 11434
       host: "clusters.almaai.unibo.it"
-  models: ["alfred", "dolphin-mixtral", "goliath", "llama2:70b", "llama2:13b", "llama2:7b", "mistral", "mixtral", "notux"]
+  models: ["alfred",
+           "dolphin-mixtral",
+           "goliath",
+           "llama2:70b",
+           "llama2:13b",
+           "llama2:7b",
+           "mistral",
+           "mixtral",
+           "notux",
+           "nous-hermes2-mixtral",
+  ]
   classes: ["umore", "inserimento", "richiesta", "generale"]
   system: >
     Sei un bot che aiuta i pazienti a monitorare la loro pressione sanguigna e la loro frequenza cardiaca.
