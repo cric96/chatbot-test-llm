@@ -3,7 +3,7 @@
     args:
       port: 11434
       host: "clusters.almaai.unibo.it"
-  models: ["alfred", "goliath", "llama2:70b", "llama2:13b", "llama2:7b", "mistral", "mixtral"]
+  models: ["alfred", "dolphin-mixtral", "goliath", "llama2:70b", "llama2:13b", "llama2:7b", "mistral", "mixtral"]
   classes:
   system: >
     Sei un chatbot che aiuta i pazienti a monitorare la loro pressione sanguigna e la loro frequenza cardiaca.
