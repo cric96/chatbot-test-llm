@@ -9,7 +9,7 @@ from testbench.logging import INDENT, LOG_FLOAT_PRECISION
 
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
 parser.add_argument('--data-file', type=str, default='./data/request/test.csv', help='input file path')
-parser.add_argument('--bench-file', type=str, default='./data/request/bench.yml', help='benchmark configuration path')
+parser.add_argument('--bench-file', type=str, default='./data/request/bench-gemini.yml', help='benchmark configuration path')
 enable_logging(level=LOG_INFO)
 LATEX_FLOAT_PRECISION = 2
 
@@ -32,8 +32,19 @@ if __name__ == '__main__':
                     for response in responses:
                         logger.debug(f'{INDENT}Output: {response._output}')
                         logger.debug(f'{INDENT}Expected: {response._expected}')
-            statistics = [analise_target(target, data) for target in targets]
+            # ChatGPT
+            statistics = list(analise_request(data))
             result_values = {}
+            for models_statistics in statistics:
+                measure, quantity, format = models_statistics.one_by_one_accuracy
+                result_values["ChatGPT3.5"] = [measure, quantity, format, models_statistics.accuracy]
+                logger.info(f'Results: for ChatGPT3.5:'
+                            f'\n\taccuracy: {models_statistics.accuracy:.{LOG_FLOAT_PRECISION}f}'
+                            f'\n\tmeasure: {measure:.{LOG_FLOAT_PRECISION}f}'
+                            f'\n\tquantity: {quantity:.{LOG_FLOAT_PRECISION}f}'
+                            f'\n\tformat: {format:.{LOG_FLOAT_PRECISION}f}\n')
+
+            statistics = [analise_target(target, data) for target in targets]
             for idx, models_statistics in enumerate(statistics):
                 for model_statistics in models_statistics:
                     measure, quantity, format = model_statistics.one_by_one_accuracy
@@ -44,16 +55,7 @@ if __name__ == '__main__':
                                 f'\n\tquantity: {quantity:.{LOG_FLOAT_PRECISION}f}'
                                 f'\n\tformat: {format:.{LOG_FLOAT_PRECISION}f}\n')
 
-            # ChatGPT
-            statistics = list(analise_request(data))
-            for models_statistics in statistics:
-                measure, quantity, format = model_statistics.one_by_one_accuracy
-                result_values["ChatGPT3.5"] = [measure, quantity, format, models_statistics.accuracy]
-                logger.info(f'Results: for ChatGPT3.5:'
-                            f'\n\taccuracy: {models_statistics.accuracy:.{LOG_FLOAT_PRECISION}f}'
-                            f'\n\tmeasure: {measure:.{LOG_FLOAT_PRECISION}f}'
-                            f'\n\tquantity: {quantity:.{LOG_FLOAT_PRECISION}f}'
-                            f'\n\tformat: {format:.{LOG_FLOAT_PRECISION}f}\n')
+
 
         # Generate Latex table with accuracies for "measure", "quantity", "format" and the overall accuracy for each model
         # Sort alphabetically by model name
