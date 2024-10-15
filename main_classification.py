@@ -42,6 +42,7 @@ def plot_data(confusion_matrix: pd.DataFrame, model_name: str) -> None:
     sn.set(font_scale=1.4)
     plt.figure()
     sn.heatmap(confusion_matrix, annot=True, fmt='g')
+    plt.title(model_name)
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
     plt.savefig(f'confusion_matrix_{model_name}.png', bbox_inches='tight')
