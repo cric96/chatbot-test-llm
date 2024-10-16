@@ -1,0 +1,3 @@
+"""pressione 14 media
+
+Spiegazione: La richiesta riguarda la media della misura di pressione per le ultime due settimane. In base alle istruzioni, il parametro 'misure' è specifico ed è indicato con pressione. Il numero di giorni si estrapola a 14 (due settimane), quindi la quantità è 14. La richiesta implica l'uso della media per riassumere le misurazioni, che significa 'formato: media'. Poiché non viene specificamente chiesto un grafico o una lista dettagliata di ogni giorno, il formato appropriato secondo la guida è lista. Pertanto, i tre parametri sono pressione, 14 e media.""" "PRESSIONE 14 MEDIA"
