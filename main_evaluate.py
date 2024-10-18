@@ -2,13 +2,14 @@ import argparse
 import yaml
 import csv
 import os
+import pandas as pd
 from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_INFO
 from testbench.logging import INDENT, LOG_FLOAT_PRECISION
 
 
 LATEX_FLOAT_PRECISION = 2
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
-parser.add_argument('--data-file', type=str, default='./data/general/test.csv', help='input file path')
+parser.add_argument('--data-file', type=str, default='./data/general/test-gemini.csv', help='input file path')
 parser.add_argument('--bench-file', type=str, default='./data/general/bench.yml', help='benchmark configuration path')
 
 enable_logging(level=LOG_INFO)
@@ -35,6 +36,24 @@ if __name__ == '__main__':
             # Bert score, each element is a dictionary with the following keys: precision, recall, f1
             scores = []
             meteor_scores = []
+            responses_all = {}
+            for idx, report in enumerate(reports):
+                responses_all[targets[idx].models[0]] = []
+                for question, responses in report:
+                    for response in responses:
+                        responses_all[targets[idx].models[0]].append(response.output)
+            ## get all question for one report
+            questions = [question for question, _ in reports[0]]
+            ground_truth = [response.expected for _, responses in reports[0] for response in responses]
+            # convert responses_all in a pd
+            responses_df = pd.DataFrame(responses_all)
+            # add questions and ground truth
+            responses_df['question'] = questions
+            responses_df['ground_truth'] = ground_truth
+            # reorder columns with question and ground truth first
+            responses_df = responses_df[['question', 'ground_truth'] + [col for col in responses_df.columns if col not in ['question', 'ground_truth']]]
+            # store responses in a csv
+            responses_df.to_csv('responses.csv', index=False)
             logger.info('Computing BERT score...')
             precisions, recalls, f1s = [], [], []
             for idx, report in enumerate(reports):

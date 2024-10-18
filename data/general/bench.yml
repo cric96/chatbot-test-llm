@@ -3,7 +3,10 @@
     args:
       port: 11434
       host: "clusters.almaai.unibo.it"
-  models: ["llama3.1", "llama3.2:3b","gemma2:2b","phi3.5:latest", "qwen2.5:0.5b", "qwen2.5:1.5b", "qwen2.5:3b", "qwen2.5:latest", "qwen2.5:14b", "qwen2.5:32b", "gemma2:27b", "llama3.1:70b", "mistral-small", "aya:35b", "qwen2.5:72b"]
+  models: [
+    "llama3.1", "llama3.2:3b","gemma2:2b","phi3.5:latest", "qwen2.5:0.5b", "qwen2.5:1.5b", "qwen2.5:3b", "qwen2.5:latest",
+    "qwen2.5:14b", "qwen2.5:32b", "gemma2:27b", "llama3.1:70b", "mistral-small", "aya:35b", "qwen2.5:72b",
+    "alfred","dolphin-mixtral","goliath","llama2:70b","llama2:13b","llama2:7b","mistral","mixtral","notux","nous-hermes2-mixtral",]
   classes:
   system: >
     Sei un chatbot che aiuta i pazienti a monitorare la loro pressione sanguigna e la loro frequenza cardiaca.

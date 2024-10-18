@@ -13,7 +13,7 @@ from testbench.logging import INDENT, LOG_FLOAT_PRECISION
 LATEX_FLOAT_PRECISION = 2
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
 parser.add_argument('--data-file', type=str, default='./data/classification/test.csv', help='input file path')
-parser.add_argument('--bench-file', type=str, default='./data/classification/bench.yml',
+parser.add_argument('--bench-file', type=str, default='./data/classification/bench-gemini.yml',
                     help='benchmark configuration path')
 enable_logging(level=LOG_INFO)
 

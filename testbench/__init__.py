@@ -186,7 +186,7 @@ def evaluate_target(target: BenchTarget,
                         if len(line) != 2:
                             message = f'Invalid line in cache file: {line}\n in file {file_name}, line {idx}, length {len(line)}'
                             raise ValueError(message)
-                        output, expected = line
+                        output, _ = line
                         responses.append(result_class(output, expected))
                 result.append((question, responses))
                 if len(responses) != len(models):
