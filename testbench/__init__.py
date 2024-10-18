@@ -15,7 +15,7 @@ from evaluate import load
 PATH = Path(__file__).parents[0]
 CACHE = PATH / 'cache'
 BERT_SCORE = load('bertscore')
-
+METEOR = load('meteor')
 
 def csv_formatter(string):
     outstream = io.StringIO()  # "fake" output file
@@ -68,7 +68,8 @@ class Result:
 
     def bert_comparison(self):
         return BERT_SCORE.compute(predictions=[self.output], references=[self.expected], lang="it")
-
+    def meteor_comparison(self):
+        return METEOR.compute(predictions=[self.output], references=[self.expected])
     def __repr__(self):
         return f'Output: {self.output}, Expected: {self.expected}, Correct: {self.correct}'
 

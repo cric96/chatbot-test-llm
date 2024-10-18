@@ -5,3 +5,5 @@ seaborn
 pandas
 bert_score
 evaluate
+google-generativeai
+nltk
