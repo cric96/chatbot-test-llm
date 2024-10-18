@@ -32,9 +32,9 @@ if __name__ == '__main__':
                         logger.debug(f'{INDENT}Output: {response.output}')
                         logger.debug(f'{INDENT}Expected: {response.expected}')
                         logger.debug(f'{INDENT}Correct: {response.correct}')
-
             # Bert score, each element is a dictionary with the following keys: precision, recall, f1
             scores = []
+            meteor_scores = []
             logger.info('Computing BERT score...')
             precisions, recalls, f1s = [], [], []
             for idx, report in enumerate(reports):
@@ -42,12 +42,16 @@ if __name__ == '__main__':
                     logger.debug(f'Question: {question}')
                     for response in responses:
                         bert_score = response.bert_comparison()
+                        meteor_score = response.meteor_comparison()
                         logger.debug(f'Score: {bert_score}')
                         scores.append(bert_score)
+                        meteor_scores.append(meteor_score)
                 # Compute average for each key
                 precision = sum([score['precision'][0] for score in scores]) / len(scores)
                 recall = sum([score['recall'][0] for score in scores]) / len(scores)
                 f1 = sum([score['f1'][0] for score in scores]) / len(scores)
+                # Compute average for meteor
+                meteor = sum(meteor["meteor"] for meteor in meteor_scores) / len(meteor_scores)
                 precisions.append(precision)
                 recalls.append(recall)
                 f1s.append(f1)
@@ -55,6 +59,7 @@ if __name__ == '__main__':
                             f'\n\tPrecision: {precision:.{LOG_FLOAT_PRECISION}f}'
                             f'\n\tRecall: {recall:.{LOG_FLOAT_PRECISION}f}'
                             f'\n\tF1: {f1:.{LOG_FLOAT_PRECISION}f}\n')
+                logger.info(f'Meteor score for {targets[idx].models[0]}: {meteor:.{LOG_FLOAT_PRECISION}f}\n')
 
             # Generate Latex table with precision, recall and f1 for each model
             logger.info('Generating Latex table...')
