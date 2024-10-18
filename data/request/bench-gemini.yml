@@ -2,7 +2,7 @@
     name: "gemini.GeminiService"
     args:
       api_key_env: "GENAI_API_KEY"
-  models: ["gemini-1.5-pro-002"]
+  models: ["gemini-1.5-pro-002", "gemini-1.5-flash-002", "gemini-1.5-flash-8b" ]
   classes:
   system: >
     Il tuo unico compito è rispondere con tre parametri da estrarre dal messaggio del paziente:

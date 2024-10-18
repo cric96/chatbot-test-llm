@@ -37,4 +37,4 @@ if __name__ == '__main__':
         df = pd.DataFrame(columns=headers)
         df['Response'] = replies
         df['Sentence'] = questions
-        df.to_csv('output.csv', index=False)
+        df.to_csv('test-gemini.csv', index=False)
