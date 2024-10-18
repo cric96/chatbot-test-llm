@@ -1,0 +1,9 @@
+"""La pressione sanguigna si misura utilizzando uno sfigmomanometro, uno strumento che consiste in una fascetta gonfiabile applicata al braccio e un manometro per leggere i valori. 
+
+Si applica la fascetta sul braccio, sopra il gomito, e si gonfia fino a comprimere l'arteria.  Poi lentamente si sgonfia mentre si ascolta con uno stetoscopio i rumori prodotti dal sangue che ricomincia a fluire. I due valori ottenuti sono:
+
+* **Pressione sistolica:** il valore più alto, corrispondente alla pressione arteriosa quando il cuore batte e spinge il sangue nelle arterie.
+* **Pressione diastolica:** il valore più basso, corrispondente alla pressione arteriosa quando il cuore si rilassa tra due battiti.
+
+
+""" "La pressione arteriosa può essere misurata utilizzando un misuratore di pressione, comunemente chiamato sfigmomanometro. Il bracciale viene posizionato intorno al braccio e gonfiato per fermare temporaneamente il flusso di sangue. Successivamente, si sgonfia lentamente per consentire al sangue di fluire e si registra la pressione."

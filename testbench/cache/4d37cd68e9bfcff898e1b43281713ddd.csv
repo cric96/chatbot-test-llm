@@ -1,0 +1,5 @@
+"""Certo! Per favore, inserisci il valore della tua ultima frequenza cardiaca (in battiti per minuto) così come è stato misurato con un dispositivo affidabile. Se hai anche misurato la pressione sanguigna, puoi inserirla anch'essa, ma non è obbligatorio.
+
+Nota: ricordati di verificare che il valore sia espresso in battiti per minuto (bpm).
+
+Inserisci il valore della tua ultima frequenza cardiaca:""" "Mi dispiace, ma non posso registrare la tua frequenza in quanto non ho accesso a dati personali o sistemi di archiviazione."

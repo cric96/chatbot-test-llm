@@ -1,0 +1,11 @@
+"""La pressione sanguigna si misura utilizzando uno sfigmomanometro, che può essere manuale o digitale. La procedura di base prevede i seguenti passaggi:
+
+1. Posizionare il bracciale dello sfigmomanometro attorno al braccio del paziente, assicurandosi che sia alla stessa altezza del cuore.
+
+2. Gonfiare il bracciale fino a quando la pressione dell'aria al suo interno non supera quella della pressione sanguigna sistemica. Questo fa sì che il flusso sanguigno nel braccio venga interrotto temporaneamente.
+
+3. Quindi, si rilascia lentamente l'aria dal bracciale mentre si ascolta con uno stetoscopio posizionato sul braccio sotto il bracciale.
+
+4. Il punto in cui si sente il primo suono del polso è la pressione sistolica; la pressione quando i suoni diventano ininterrotti è la pressione diastolica.
+
+Queste letture vengono registrate come pressione sistolica (numero più alto) sopra la pressione diastolica (numero più basso), ad esempio 120/80 mmHg.""" "La pressione arteriosa può essere misurata utilizzando un misuratore di pressione, comunemente chiamato sfigmomanometro. Il bracciale viene posizionato intorno al braccio e gonfiato per fermare temporaneamente il flusso di sangue. Successivamente, si sgonfia lentamente per consentire al sangue di fluire e si registra la pressione."
