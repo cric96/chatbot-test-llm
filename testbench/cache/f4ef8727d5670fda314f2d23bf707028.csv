@@ -1,0 +1,4 @@
+"""**media della pressione degli ultimi 12 mesi**
+
+* Oggi: -1
+* Ultimo giorno di esame: 30 (mese) = -1, 31 (diesero) = -1, 32 (ieri) = -1, 33 (ultima settimana) = -1, 34 (i mesi successivi) = -1, 35 (anno - 1) = -1, 36 (anno - 2) = -1, 37 (anno - 3) = -1, 38 (anno - 4) = -1, 39 (anno - 5) = -1, 40 (anno - 6) = -1, 41 (anno - 7) = -1""" "ENTRAMBI 365 MEDIA"

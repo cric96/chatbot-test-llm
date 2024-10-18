@@ -1,0 +1,11 @@
+"""Ecco il riepilogo delle tue richieste:
+
+*   voglio la media della pressione di ieri -> pressione 1 media
+*   Lista della frequenza di oggi? -> frequenza 0 lista
+*   Grafico delle misure dell'ultimo mese -> entrambi 30 grafico
+*   Tutti i dati della pressione -> pressione -1 lista
+*   Voglio sapere la frequenza degli ultimi 6 mesi -> frequenza 180 lista
+*   Volgio visualizzare pressione e frequenza delle ultime due settimane -> entrambi 14 grafico
+*   Riassunto di tutte le informazioni che ho fornito finora -> generale -1 lista
+
+Spero che questo ti sia stato utile!""" "GENERALE -1 LISTA"
