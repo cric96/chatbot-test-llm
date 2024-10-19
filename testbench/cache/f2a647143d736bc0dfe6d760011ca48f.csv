@@ -1,0 +1,10 @@
+"""Ecco la tua lettre corretta:
+
+  Voglio sapere quali sono le misure della pressione e della frequenza dei giorni scorsi -> 
+    pressione 0 media, frequenza -1 lista.
+  
+   Voglio conoscere i dati relativi alla pressione durante gli ultimi 7 giorni -> 
+     pressione 0 medio, frequenza -1 lista.
+
+   Il problema riguarda la misura della pressione di ieri e la frequenza di oggi -> 
+    pressione 1 media, frequenza -1 lista.""" "ENTRAMBI -1 LISTA"

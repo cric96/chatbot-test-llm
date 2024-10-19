@@ -1,0 +1,14 @@
+"""Ecco una lista delle misurazioni che hai inserito:
+
+* Pressione: *voglio la media della pressione di ieri*
+* Frequenza: 
+  * Oggi: *0 frequenza*
+  * Ieri: *1 frequenza*
+* Entrambi (sia pressione che frequenza): *pressione -1, frequenza -1*
+* Generale: *voglio sapere la frequenza degli ultimi 6 mesi*
+
+Tutti i dati sono stati visualizzati come grafico:
+
+* Grafico delle misure dell'ultimo mese:
+ + Pressione: *30 grafico*
+ + Frequenza: *180 grafico*""" "GENERALE -1 LISTA"

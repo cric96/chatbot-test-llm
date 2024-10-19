@@ -1,0 +1,16 @@
+"""**Lista delle letture di pressione:**
+```
+-1 lista
+```
+
+**Grafico delle letture di pressione:**
+```grafico
+pressione -1 lista
+```
+
+**Data e ora dell'ultima lettura:**
+```
+ultime misure = 0, ieri = 1, settimana = 7, mese = 30, anno = 365; totale giorni considerati = 365; 
+oggi / ultime misure = 0, ieri = 1, oggi = 2, settimana = 8, mese = 31, anno = 366; 
+voglio sapere la frequenza degli ultimi 6 mesi 
+```""" "PRESSIONE -1 LISTA"

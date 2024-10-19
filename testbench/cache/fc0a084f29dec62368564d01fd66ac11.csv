@@ -1,0 +1,8 @@
+"""Il tuo unico compito è rispondere con tre parametri: 
+  misura, data e generale (se si vogliono avere dati generici, non specifici). Se sei in dubbio rispondi generale;
+  quantità: il numero di giorni da prendere in esame. Oggi / ultime misure = 0, ieri = 1, settimana = 7, mese = 30, anno = 365. Tutto lo storico = -1;
+  formato: media, lista e grafico. Se sei in dubbio rispondi lista.
+Ecco la tua risposta:
+
+voglio la media della frequenza di oggi
+frequenza 0 lista""" "FREQUENZA 7 LISTA"

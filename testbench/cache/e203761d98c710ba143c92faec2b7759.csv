@@ -1,0 +1,14 @@
+"""La frequenza delle ultime 6 settimane è di 180. Ecco una lista dei dati:
+
+**Frequenza delle ultime 6 settimane:**
+
+- **20/02**: 15
+- **21/02**: 16
+- **22/02**: 17
+- **23/02**: 18
+- **24/02**: 19
+- **25/02**: 20
+
+**Vedi la lista delle frequenze delle ultime 6 settimane:**
+
+pressione -1 lista""" "PRESSIONE 0 LISTA"

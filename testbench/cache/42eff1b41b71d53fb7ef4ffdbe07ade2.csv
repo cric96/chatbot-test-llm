@@ -1,0 +1,14 @@
+"""Sì, posso aiutarti a visualizzare i tuoi dati. Per farlo ti fornisco i tre valori necessari:
+
+**Data e dati da analizzare:**
+
+* **Media pressione:** pressione
+* **Frequenza:** frequenza
+* **Entrambi:** entrambe
+* **Generale:** generale
+
+Per visualizzare i dati, ti consiglio di utilizzare un software di statistica o una piattaforma online come Google Sheets, Microsoft Excel o Tableau. Puoi anche utilizzare il comando ` chart` per creare uno grafico che mostra le misure delle pressioni e della frequenza degli ultimi 30 giorni.
+
+Ricorda che gli ultimi dati saranno considerati -1 a causa della limitazione dei 365 giorni all'anno. Se desideri vedere i dati anteriori, potresti utilizzare il comando `filter` per selezionare solo i dati più recenti e then `chart` per creare uno grafico.
+
+Se hai bisogno di ulteriore aiuto o hai altre domande, non esitare a chiedere.""" "GENERALE -1 LISTA"

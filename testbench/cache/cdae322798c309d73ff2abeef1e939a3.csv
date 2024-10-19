@@ -1,0 +1,10 @@
+"""**Data**: Oggi / ultime misure = 0, ieri = 1, settimana = 7, mese = 30, anno = 365
+**Formato**: media (parola media)
+**Tipo di dato**: pressione
+**Quantità data**: 5 giorni da prendere in esame
+
+La lista dei dati sulla pressione è:
+
+-0. -1. -2. -3. -4. -5.
+
+La grafica delle misure della pressione dell'ultimo mese è: **entrambi 30 grafico**""" "PRESSIONE -1 LISTA"

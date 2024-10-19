@@ -1,0 +1,10 @@
+"""**Frequenza Cardiaca:**
+
+*   **Misure:** 
+ + **Oggi**: 100 bpm (media) 
+ + **Ieri**: 102 bpm
+ + **Settimana**: 104 bpm (media)
+ + **Mesero**: 106 bpm (media)
+ + **Anno e mese**: 108 bpm (media)
+*   **Formato:** media 
+*   **Lista:** Frequenza di ogni giornata (oggi, ieri, settimana, mese)""" "FREQUENZA -1 LISTA"

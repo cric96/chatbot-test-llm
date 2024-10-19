@@ -1,0 +1,21 @@
+"""**Media di pressione sanguigna:**
+
+* Oggi: 100 mmHg (media = 105 mmHg)
+* Ieri: 98,5 mmHg
+* Ultimo giorno: 102 mmHg
+* Medie delle ultime tre giornate:
+ + 1: 101,2 mmHg
+ + 2: 99,8 mmHg
+ + 3: 100,6 mmHg
+
+**Media di frequenza cardiaca:**
+
+* Oggi: 72 BPM (media = 73 BPM)
+* Ieri: 76 BPM
+* Ultimo giorno: 75 BPM
+* Medie delle ultime tre giornate:
+ + 1: 74 BPM
+ + 2: 71 BPM
+ + 3: 70 BPM
+
+**Nota:** Le medie sono state calcolate utilizzando i dati relativi all'ultimo giorno.""" "ENTRAMBI 1095 MEDIA"

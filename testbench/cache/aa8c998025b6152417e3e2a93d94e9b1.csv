@@ -1,0 +1,9 @@
+"""Il tuo compito è: generale, media, lista. Per rispondere a questa domanda dovremmo avere i dati sulle misure della pressione sanguigna che abbiamo effettuato negli ultimi 24 ore.
+
+I dati sono stati raccolti nel periodo di tempo che stai chiedendo informazioni sulle misure: oggi / ultime misure = 0, ieri = 1.
+
+Tuttavia, non ci sono dati disponibili perché non abbiamo effettuato alcuna misura nel periodo di tempo. Pertanto rispondiamo:
+
+*   media = -1
+*   lista = 
+*   grafico =""" "PRESSIONE 1 MEDIA"
