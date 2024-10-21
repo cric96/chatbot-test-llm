@@ -4,6 +4,7 @@ general_responses.csv
 bert_score.tex
 classification_test_results.tex
 request_test_results.tex
+responses.csv
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij+all
