@@ -17,6 +17,9 @@ CACHE = PATH / 'cache'
 BERT_SCORE = load('bertscore')
 METEOR = load('meteor')
 
+def update_cache_folder(folder: str):
+    global CACHE
+    CACHE = PATH / folder
 def csv_formatter(string):
     outstream = io.StringIO()  # "fake" output file
     cw = csv.writer(outstream, quoting=csv.QUOTE_ALL, lineterminator="")  # pass the fake file to csv module

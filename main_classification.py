@@ -6,7 +6,8 @@ import os
 import seaborn as sn
 import matplotlib.pyplot as plt
 from analysis import analise_target
-from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_INFO
+from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_INFO, CACHE, PATH, \
+    update_cache_folder
 from testbench.logging import INDENT, LOG_FLOAT_PRECISION
 
 
@@ -15,6 +16,7 @@ parser = argparse.ArgumentParser(description='LLM comparison for sentiment analy
 parser.add_argument('--data-file', type=str, default='./data/classification/test.csv', help='input file path')
 parser.add_argument('--bench-file', type=str, default='./data/classification/bench.yml',
                     help='benchmark configuration path')
+parser.add_argument('--cache', type=str, default=None, help='cache directory path')
 enable_logging(level=LOG_INFO)
 
 nas_bert_confusion_matrix = [[59, 3, 1, 0],
@@ -50,6 +52,8 @@ def plot_data(confusion_matrix: pd.DataFrame, model_name: str) -> None:
 
 if __name__ == '__main__':
     args = parser.parse_args()
+    if args.cache is not None:
+        update_cache_folder(args.cache)
     with open(os.path.abspath(args.data_file), 'r') as data_file:
         with open(os.path.abspath(args.bench_file), 'r') as bench_definition_file:
             logger.info(f'Loading data...')

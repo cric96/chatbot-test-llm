@@ -3,7 +3,7 @@ import yaml
 import csv
 import os
 import pandas as pd
-from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_INFO
+from testbench import target_from_object, evaluate_target, logger, enable_logging, LOG_INFO, update_cache_folder
 from testbench.logging import INDENT, LOG_FLOAT_PRECISION
 
 
@@ -11,11 +11,14 @@ LATEX_FLOAT_PRECISION = 2
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
 parser.add_argument('--data-file', type=str, default='./data/general/test-gemini.csv', help='input file path')
 parser.add_argument('--bench-file', type=str, default='./data/general/bench.yml', help='benchmark configuration path')
+parser.add_argument('--cache', type=str, default=None, help='cache directory path')
 
 enable_logging(level=LOG_INFO)
 
 if __name__ == '__main__':
     args = parser.parse_args()
+    if args.cache is not None:
+        update_cache_folder(args.cache)
     with open(os.path.abspath(args.data_file), 'r') as data_file:
         with open(os.path.abspath(args.bench_file), 'r') as bench_definition_file:
             logger.info(f'Loading data...')
