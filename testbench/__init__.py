@@ -17,6 +17,9 @@ CACHE = PATH / 'cache'
 BERT_SCORE = load('bertscore')
 METEOR = load('meteor')
 
+def get_cache_folder():
+    global CACHE
+    return CACHE
 def update_cache_folder(folder: str):
     global CACHE
     CACHE = PATH / folder

@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 from hashlib import md5
 from typing import Iterable, Type
-from testbench import Result, BenchTarget, CACHE, SmartResult, RequestResult
+from testbench import Result, BenchTarget, SmartResult, RequestResult, get_cache_folder
 
 
 class Statistics:
@@ -38,7 +38,7 @@ def analise_target(target: BenchTarget, knowledge: Iterable[tuple[str, str]], cl
         expected = element[1]
         hyperparameters = f'{question}_{target.models}_{target.system}'
         hash_file_name = md5(hyperparameters.encode()).hexdigest() + '.csv'
-        file_name = CACHE / hash_file_name
+        file_name = get_cache_folder() / hash_file_name
         with open(file_name, 'r') as f:
             # for each line create a result
             reader = csv.reader(f, delimiter=' ')
