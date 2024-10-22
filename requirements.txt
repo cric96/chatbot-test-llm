@@ -7,3 +7,4 @@ bert_score
 evaluate
 google-generativeai
 nltk
+deepeval
