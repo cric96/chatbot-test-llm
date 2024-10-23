@@ -1,0 +1,3 @@
+"""**misura:** frequenza, generalmente (per dati generali, non specifici), o media (per dati approssimativi). In caso di dubbio, usa media. * **quantità:** 0 (per la precedente giornata/ultima misura) o -1 (per tutto lo storico). * **formato:** lista, grafico (devono comparire parole come grafico, immagine, andamento, visualizza), o media. In caso di dubbio, usa lista.
+
+Nota: se non hai registrato la frequenza cardiaca in precedenza, potresti non avere dati esatti per quella giornata.""" "FREQUENZA -1 LISTA"

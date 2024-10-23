@@ -1,0 +1,8 @@
+"""Sarò felice di aiutarti a monitorare la tua pressione sanguigna e la tua frequenza cardiaca.
+
+Per favore, inserisci i seguenti dati:
+
+* La pressione arteriosa alta (sodio) in mmHg
+* La pressione arteriosa bassa (diastolica) in mmHg
+
+Puoi fornirmi questi dati in formato numerico esatto, ad esempio 120/80.""" "Certo, la prego di comunicarmi i valori di pressione sistolica e diastolica, nonché la sua frequenza cardiaca. Specifichi anche la data e l'ora della misurazione."

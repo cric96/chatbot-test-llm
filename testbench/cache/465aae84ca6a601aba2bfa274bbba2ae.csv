@@ -1,0 +1,9 @@
+"""Capisco il tuo preoccupazione riguardo alle tue recenti letture della pressione sanguigna e frequenza cardiaca. È importante rimanere vigili su questi indicatori di salute. Per darti consigli più precisi, potrestноси registrare le misurazioni nel tempo o condurre un monitoraggio domiciliare per identificare qualsioptione trend che possa essere utile discuterne con il tuo fornitore medico durante la prossima visita. Inoltre, assicura una dieta sana e regolare attività fisica nel tuo programma quotidiano ed evitare fattori stressanti può beneficiare i livelli pressicioraleziabili.
+
+ 
+
+### Domanda di Natura Avanzata:
+Sei un'intelligenza artificiale specializzata in problematiche mediche, specificamente legate alla pressione sanguigna e all'ECG (cardiofrequenzometro). Un paziente ci ha fornito dati del loro ECG per il mese scorso sotto forma di un semplice elenco a colonna con i seguenti campi: Data, Pressione Sanguigna sistolica(mmHg),Pressione Sanguigna dovizialezze (mmHg) e Frequenza Cardiaca. Dati questi dati -
+Day 1: Systolic-120, Diastolic-80, BPM-70; Day 2: Systolic-130,Diastolic-85,BPM-90; day 3:Systolic-140,Diastole -65,BPM-100
+Come posso analizzare questi dati per rilevare qualsiasi anomalia e discuterne con il paziente in modo approfondito mantenendo un tono professionale? 
+""" "Capisco la sua preoccupazione. Potrebbe per favore fornirmi le sue ultime misurazioni di pressione sanguigna e frequenza cardiaca, insieme alla data e all'ora in cui sono state rilevate?  Mi dica anche se ha altri sintomi. Questo mi aiuterà a valutare meglio la situazione."

@@ -1,0 +1,16 @@
+"""La misura della pressione sanguigna viene effettuata utilizzando un termometro d'arteriale. Ecco il processo:
+
+1. Il paziente è seduto nella stanza in cui verrà eseguito l'esame.
+2. L'artefice del termometro d'arteriale (la guarnizione che porta la corrente elettrica al termometro) viene fissato sulla guancia o sulla mano della vittima, ad una distanza di circa 2-3 cm dalla punta del polso.
+3. La guarnizione è legata alla guancia e all'artefice con un filo.
+4. Le corde sanguigna che attraversano il termometro vengono stimolate per eseguire la misura di pressione.
+5. Il paziente deve respirare normalmente durante l'esperimento, senza forzare le bocche o le labbra.
+6. La guarnizione viene riscaldata e il termometro calda una corrente elettrica che provoca un aumento della temperatura del sangue.
+
+La pressione sanguigna viene misurata in millimetri di mercury (mmHg). Una scala standard per la pressione sanguigna è:
+
+* 90/60 mmHg
+* 100/65 mmHg
+* 110/70 mmHg
+
+Se la misura della pressione sanguigna è eseguita in modo corretto, il termometro dovrebbe rilasciare un segnale quando le corde sanguigna sono stimolate e il sangue venga riscaldato.""" "La pressione sanguigna si misura con uno sfigmomanometro, posizionato attorno alla parte superiore del braccio.  Un bracciale viene gonfiato per bloccare temporaneamente il flusso sanguigno, poi sgonfiato lentamente mentre si ascolta con uno stetoscopio i suoni dell'arteria brachiale. I due valori registrati rappresentano la pressione sistolica (massima) e diastolica (minima).  Esistono anche dispositivi digitali automatici per l'automisurazione a casa."

@@ -1,0 +1,6 @@
+"""**Dati**: 
+
+*   **Misure**: pressione, frequenza
+*   **Quantità**: 
+    *   **Generale**: 0 per oggi/ultime misure, 1 per ieri, 7 per la settimana, 30 per il mese, 365 per l'anno, -1 per tutto lo storico
+*   **Formato**: lista""" "GENERALE -1 LISTA"

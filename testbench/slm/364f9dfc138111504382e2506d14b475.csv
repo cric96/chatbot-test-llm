@@ -1,0 +1,12 @@
+"""Certo!  
+
+Fornisci le informazioni di seguito per ottenere un riassunto:
+
+* **Misura:** specifica la misura (pressione, frequenza, entrambe o generale) 
+* **Quantità:** specificando il periodo da considerare (0 giorni, 1 giorno, 7 giorni, 30 giorni, 365 giorni o -1 per tutto lo storico)
+* **Formato:** specifica il formato desiderato (media, lista, grafico) 
+
+
+
+Fammi sapere quali informazioni vuoi riassumere.  
+""" "GENERALE -1 LISTA"

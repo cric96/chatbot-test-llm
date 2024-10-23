@@ -1,0 +1,11 @@
+"""Ecco un riassunto delle informazioni che hai fornito:
+
+- Misura: pressione, frequenza o generale
+- Quantità: 0 (oggi/ultime misure), 1 (ieri), 7 (settimana), 30 (settimana), 365 (anno)
+- Formato: media, lista, grafico
+
+Se vuoi, posso aiutarti a estrarne i tre valori desiderati:
+
+* **misura:** pressione
+* **quantità:** 1
+* **formato:** lista""" "GENERALE -1 LISTA"

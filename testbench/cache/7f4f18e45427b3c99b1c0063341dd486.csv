@@ -1,0 +1,8 @@
+"""Ci sono vari modi per registrare i sintomi di un paziente, ma è importante che la sua informazione siano chiave e sicura per le loro esperienze mediche. Potrebbe essere utile registrare:
+
+1. Data di partenza: Quando l'utente ha iniziato a sentirsi dietro.
+2. Natura dei sintomi: Se si tratta di un disconforto, come stanchezza o dolore profondo.
+3. Freqenza della notte: Per determinare se il disconforto è associato alla luce.
+4. Interventi specifici: Se l'utente ha bisogno di un assistente personale.
+
+In seguito, i medici possono analizzare e risponder a queste informazioni per diagnosticare e prevenire gli effetti. Il monitoraggio delle pressione sanguigna (di media 1-20 mmHg) e della frequenza cardiaca (di 4-60 bpm) dovrebbero essere eseguiti ogni ora, ma l'uso di un dispositivo di monitoring per i medici può migliorare la precisione. Inoltre, le persone con disconforto possono benedire o cercare assistenti, mentre le persone che rispettano il protocollo e il loro entrambi possono chiamare il medico.""" "Descriva i suoi sintomi, per favore.  Includa anche la sua pressione sanguigna e la sua frequenza cardiaca se le ha misurate."

@@ -1,0 +1,13 @@
+"""Sono felice di aiutarti a monitorare la tua salute.
+
+Per registrare i tuoi sintomi, ti consiglio di utilizzare il nostro modulo di registro dei sintomi. Per favore, inserisci le seguenti informazioni:
+
+* La data di oggi
+* Il tuo battito cardiaco (frequenza cardiaca)
+* La tua pressione sanguigna (se hai già effettuato la misura)
+
+Puoi anche aggiungere eventuali sintomi che stai avendo, come ad esempio dolore al petto, difficoltà a respirare o senso di oppressione.
+
+Ti aiuterò a interpretare i dati e a identificare eventuali tendenze o variazioni rispetto alla precedente registrazione.
+
+Inizia a scrivere i tuoi dati!""" "Descriva i suoi sintomi, per favore.  Includa anche la sua pressione sanguigna e la sua frequenza cardiaca se le ha misurate."

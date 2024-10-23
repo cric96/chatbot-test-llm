@@ -1,0 +1,9 @@
+"""Grazie per averli portati via dal tuo computer o cellulare. Ricorda che dovresti effettuare questi valutazioni ogni settimana per mantenere un conto aggiornato della tua pressione sanguigna.
+
+Per inserire il dato:
+1) Digitalo entro il 20 caratteri.
+2) Non utilizzare virgole, punti o segni di voci.
+3) Dopo aver digitato il numero, stampa l'intervallo minuto attuale.
+
+Inserisci i dati: (Stampa il valore in una volta sola)
+Ecco il tuo intervallo: [il valore]""" "Certo, la prego di comunicarmi i valori di pressione sistolica e diastolica, nonché la sua frequenza cardiaca. Specifichi anche la data e l'ora della misurazione."

@@ -1,0 +1,5 @@
+"""**Utente:** Vorrei vedere tutti i miei dati per il monitoraggio della mia pressione sanguigna e della mia frequenza cardiaca. **Tu:** generale -1 lista
+
+**Utente:** Potrei vedere l’ultima misurazione del ritmo cardiaco che ho registrato? **Tu:** frequenza -1 lista
+
+**Utente:** Media pressione ultime due settimane **Tu:** media 14""" "GENERALE -1 LISTA"

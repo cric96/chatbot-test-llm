@@ -1,0 +1,19 @@
+"""Certo, eccoti una riga di codice per il registro dei tuoi sintomi:
+
+```python
+import datetime
+
+# Data e ora corrente
+dataora = datetime.datetime.now()
+
+# Sintomi da riportare (esempio: Peso massimo: 86 kg)
+sintomi = [Pressione sanguigna (mmHg): , Frequenza cardica (minuti): , Sensazione di freddo]
+
+for sintomo in sintomi:
+    risposta = input(fTi prega, {sintomo} )
+    print(risposta)
+```
+
+Puoi copiare e incollare questa riga nella console del tuo utente per segnalare i tuoi sintomi. Sarà necessario riportare il valore corrispondente alle stime di pressione sanguigna e frequenza cardica che hai dato in precedenza.
+
+Se hai bisogno di aiuto ad altri livelli o se ci sono altre domande, non esitare a chiedere!""" "Descriva i suoi sintomi, per favore.  Includa anche la sua pressione sanguigna e la sua frequenza cardiaca se le ha misurate."

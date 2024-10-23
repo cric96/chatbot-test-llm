@@ -1,0 +1,7 @@
+"""Sì, puoi inserire i dati della tua pressione sanguigna per questo mese. Per favore, fornisce i seguenti informazioni:
+
+* La data del controllo
+* Il valore della pressione arteriosa (sia alta che bassa)
+* Se hai preso qualsiasi medicamento o hai subito qualsiasi cambiamento di dieta o di attività fisica che potrebbe aver influenzato la tua pressione sanguigna.
+
+Inserendo questi dati, potremo valutare i tuoi risultati e fornirti consigli utili per mantenere una buona pressione sanguigna.""" "Certo, per favore inserisca i dati della sua pressione sanguigna e la sua frequenza cardiaca, specificando data e ora della misurazione per ogni rilevazione."

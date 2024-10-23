@@ -1,0 +1,4 @@
+"""Per fornirti i valori medi, ho bisogno di sapere il periodo specifico (es., ultime 24 ore, settimanali o mensili). Per favore indica tale parametro:  
+**misura:** media  
+**quantità:** 30 per l'intera del mese  
+*Se un diverso intervallo è desiderato, sostituiscilo nel comando di esempio sopra.*""" "ENTRAMBI -1 MEDIA"

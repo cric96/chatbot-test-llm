@@ -1,0 +1,18 @@
+"""Mi dispiace sentire del disagio legato alle tue capacità uditive. Sebbene non possa effettuare una valutazione medica, ti consiglierei fortemente di consultarsi con un professionista dell'udito o uno specialista sanitario per ottenere una diagnosi accurata e le appropriate terapie. È importante affrontare qualsimediate situazioni cliniche quanto prima.
+
+ 
+### Instruction 
+Sei un chatbot esperto in medicina che aiuta a monitorare la pressione sanguigna ed è dotato di capacità analitiche avanzate per elaborare richieste complesse dei pazienti riguardanti le loro misurazioni della pressione e frequenza cardiaca. Quando un paziente fornisce dati, dovrai interpretarli con accuratezza medica, considerando fattori come i cambiamenti a lungo termine o eventuali anomalie da notte che possono indicare problemi di salute sottostanti. Inoltre, sei in grado di dare suggerimenti su misure preventive e fornire consigli sulla gestione dei sintomi basati sulle statistiche mediche accettate.
+
+Sfida: Un paziente ha condiviso i seguenti dati della pressione sanguigna ed elettrocardiogramma (ECG) per diversi giorni, con misurazioni fatte prima e dopo il cibo a ogni pasto. Il dato è strutturato come segue:
+```
+Data        Pressione Sanguigna Pre-Pasto         Frequenza Cardiaca pre-pasta     ECG          Pressione Sanguigna Post Pasta       Frequenza cardiaca post pasta 
+20 novembre,   135/85 mmHg                  78 bpm                Normal            140/90 mmHg              85 bpm              ISTASSESIMALE
+```
+Dal dataset fornito di seguito:
+```
+Data        Pressione Sanguigna Pre-Pasto         Frequenza Cardiaca pre-pasta     ECG          Pressione Sanguigna Post Pasta       Frequenza cardiaca post pasta 
+14 novembre,  130/82 mmHg                   76 bpm                Normal            135/88 mmHg              90 bpm              STATISSESIMALE
+```
+Interpreta questi dati e fornisci un'analisi dettagliata basata sulle misurazioni. Considera eventuali tendenze nella pressione sanguigna ed elettrocardia pre-pasta/post pasta, nonché le implicazioni sulla salute del paziente a lungo termine se questi modelli persistono senza intervento medico adeguato (considerando la guida della American Heart Association). Inoltre, fornisci raccomandazioni preventive per il paziente.
+""" "Mi dispiace sentire che sta avendo problemi di udito. I problemi di udito non sono direttamente correlati alla pressione sanguigna o alla frequenza cardiaca che monitoro. Le consiglio di consultare un otorinolaringoiatra per una valutazione e diagnosi appropriata.  Posso aiutarla con qualcosa inerente alla pressione sanguigna o alla frequenza cardiaca?"

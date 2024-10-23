@@ -1,0 +1,13 @@
+"""Sì, puoi avere un riassunto delle tue informazioni:
+
+**Pressione**
+
+* **Misura:** Pressione
+* **Quantità:** 7 (considerando la settimana in cui hai registrato la pressione)
+* **Formato:** Media (parola media)
+
+**Frequenza cardiaca**
+
+* **Misura:** Frequenza (0, il giorno precedente)
+* **Quantità:** -1 (per tutto lo storico)
+* **Formato:** Lista""" "GENERALE -1 LISTA"

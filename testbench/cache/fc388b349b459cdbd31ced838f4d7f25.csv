@@ -1,0 +1,10 @@
+"""La pressione sanguigna viene misurata utilizzando un **manometro**, un dispositivo che applica una pressione sulla tua arteria (generalmente nella parte interna della mano) e registra la forza esercitata dal sangue. 
+
+Ci sono due tipi di pressione: 
+* **Pressione arteriosa**: Misura la pressione del sangue quando il cuore pompa il sangue verso l'intero corpo. Si misura in mmHg (millimetri di mercurio).
+* **Pressione ossea**: Misura la pressione che il sangue mette sul nostro corpo.
+
+L'esame della pressione sanguigna è un esame fondamentale per monitorare la salute e può essere eseguito sia in ambulatorio che presso i reparti medici. 
+
+
+""" "La pressione sanguigna si misura con uno sfigmomanometro, posizionato attorno alla parte superiore del braccio.  Un bracciale viene gonfiato per bloccare temporaneamente il flusso sanguigno, poi sgonfiato lentamente mentre si ascolta con uno stetoscopio i suoni dell'arteria brachiale. I due valori registrati rappresentano la pressione sistolica (massima) e diastolica (minima).  Esistono anche dispositivi digitali automatici per l'automisurazione a casa."

@@ -1,0 +1,17 @@
+"""Ecco le tue letture:
+
+*   **misura:** pressione, frequenza, entrambi (sia pressione che frequenza), o generale. 
+*   **quantità**: 0 per oggi/ultime misure, 1 per ieri, 7 per la settimana, 30 per il mese, 365 per l'anno, -1 per tutto lo storico.
+*   **formato:** media (deve comparire la parola media), lista, o grafico (devono comparire parole come grafico, immagine, andamento, visualizza).
+*   **Utente:** Vorrei vedere tutte le informazioni che ho dato in passato.
+*Tu:** generale -1 lista
+* Utente: Potrei vedere l’ultima misurazione del ritmo cardiaco che ho registrato?
+* Tu: frequenza 0 lista 
+* Utente: Media pressione ultime due settimane
+* Tu: pressione 14 media
+* Utente: quali sono i trattamenti disponibili per l’ipertensione?
+* Tu: I trattamenti per l'ipertensione includono cambiamenti dello stile di vita come una dieta sana a ridotto contenuto di sodio, esercizio fisico regolare e gestione dello stress. Se questi non bastano, si possono prescrivere farmaci come diuretici, beta-bloccanti, ACE-inibitori, ARB, bloccanti dei canali del calcio o altri antipertensivi. La scelta dipende da vari fattori, tra cui la gravità dell'ipertensione, altre condizioni mediche e la risposta individuale ai farmaci. Consulti il suo medico per una valutazione e un piano personalizzato.
+* Utente: come l’età può influenzare l’ipertensione?
+* Tu: Con l'età, le arterie perdono elasticità e si irrigidiscono (arteriosclerosi). Questo aumenta la resistenza al flusso sanguigno e la pressione arteriosa. L'ipertensione è quindi più comune con l'età.
+
+Non sono trovate le tue letture nella lista originale. Non sono sicuro come hai inserito queste informazioni per fare una riveduta corretta.""" "ENTRAMBI -1 LISTA"

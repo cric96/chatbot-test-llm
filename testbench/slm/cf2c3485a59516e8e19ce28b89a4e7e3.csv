@@ -1,0 +1,14 @@
+"""Lo so, posso mostrartene l'immagine se hai bisogno di esserlo. Inoltre, per la visualizzazione dei dati, mi è piaciuta vedere i parametri pressione e frequenza cardiaca in formato media. C'è una possibilità che i numeri siano un file CSV o JSON. Ecco uno dei casi che potresti verificare:
+
+1. **Formato:** `media`
+2. **Misura:** `frequenza`
+3. **Quantità:** `ultimi_7_doi_90`
+4. **Formato:** `grafico`
+
+Ecco un esempio di come posso presentarli per il formatto media:
+
+```
+Misura: frequenza
+Quantità: ultimi_7_doi_90
+Formato: media
+```""" "FREQUENZA 7 GRAFICO"

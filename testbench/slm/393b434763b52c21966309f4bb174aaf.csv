@@ -1,0 +1,15 @@
+"""**Utente:** Vorrei vedere le letture della frequenza che ho registrato negli ultimi sette giorni. 
+
+**Tu:** lista -1 (per l'ultima misurazione, poiché non hai fornito una data specifica)
+
+**Utente:** Mi dispiace, ma non posso mostrarti i dati precedenti senza la tua specifica domanda di un'analisi dettagliata. Se hai bisogno di informazioni su come ottenere il tuo dati, ti consiglio di consultare il tuo medico.
+
+**Utente:** Vorrei anche vedere le letture della pressione sanguigna che ho registrato negli ultimi sette giorni. 
+
+**Tu:** generale -1 (per l'ultima misurazione, poiché non hai fornito una data specifica)
+
+**Utente:** Potrebbe essere utile avere i dati di pressione nella tua stessa base di dati o sulla tua macchina. Ti consiglio di controllare con il tuo medico se sono disponibili in modo da poter analizzare questi dati più a lungo termine.
+
+**Utente:** Quali sono le misure che ho fatto per ridurre la pressione sanguigna? 
+
+**Tu:** generale -1 lista""" "FREQUENZA 7 LISTA"

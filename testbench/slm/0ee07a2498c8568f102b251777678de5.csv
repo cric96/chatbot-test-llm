@@ -1,0 +1,9 @@
+"""Per esaminare i dati più recenti sulla tua pressione, dovrò aver bisogno di alcuni parametri aggiuntivi per poter fornirti una risposta precisa.
+
+*   **misura:** pressione (perdati alla fine della tua misurazione)
+*   **quantità**: 0 - oggi/ultime misure, 1 - ieri, 7 - la settimana precedente, 30 - il mese precedente, 365 - l'anno precedente
+*   **formato:** media (deve comparire il termine media)
+
+Per esaminare i dati più recenti sulla tua pressione, ti chiedo di fornirmi questi tre parametri. 
+
+Inoltre, vorrei sottolineare che la tua pressione è alta e potrebbe essere necessaria una consultazione con un medico per una valutazione approfondita.""" "PRESSIONE 0 LISTA"
