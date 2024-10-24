@@ -1,0 +1,19 @@
+multi_output:
+  - bertscore:
+    - precision
+    - recall
+    - f1
+  - rouge:
+    - rouge1
+    - rouge2
+    - rougeL
+    - rougeLsum
+single_output:
+  - bleu:
+      - bleu
+  - bleurt:
+      - scores
+  - google_bleu:
+      - google_bleu
+  - meteor:
+      - meteor

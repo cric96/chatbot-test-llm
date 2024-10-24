@@ -15,14 +15,23 @@ from evaluate import load
 PATH = Path(__file__).parents[0]
 CACHE = PATH / 'cache'
 BERT_SCORE = load('bertscore')
+ROUGE = load('rouge')
 METEOR = load('meteor')
+BLEU = load('bleu')
+BLEURT = load('bleurt')
+GOOGLE_BLEU = load('google_bleu')
+
 
 def get_cache_folder():
     global CACHE
     return CACHE
+
+
 def update_cache_folder(folder: str):
     global CACHE
     CACHE = PATH / folder
+
+
 def csv_formatter(string):
     outstream = io.StringIO()  # "fake" output file
     cw = csv.writer(outstream, quoting=csv.QUOTE_ALL, lineterminator="")  # pass the fake file to csv module
@@ -74,8 +83,40 @@ class Result:
 
     def bert_comparison(self):
         return BERT_SCORE.compute(predictions=[self.output], references=[self.expected], lang="it")
+
+    def rouge_comparison(self):
+        return ROUGE.compute(predictions=[self.output], references=[self.expected])
+
     def meteor_comparison(self):
         return METEOR.compute(predictions=[self.output], references=[self.expected])
+
+    def bleu_comparison(self):
+        return BLEU.compute(predictions=[self.output], references=[[self.expected]])
+
+    def bleurt_comparison(self):
+        return BLEURT.compute(predictions=[self.output], references=[self.expected])
+
+    def google_bleu_comparison(self):
+        return GOOGLE_BLEU.compute(predictions=[self.output], references=[[self.expected]])
+
+    def comparison(self, metric: str) -> float:
+        if metric == 'bertscore':
+            return self.bert_comparison()
+        elif metric == 'rouge':
+            return self.rouge_comparison()
+        elif metric == 'meteor':
+            return self.meteor_comparison()
+        elif metric == 'bleu':
+            return self.bleu_comparison()
+        elif metric == 'bleurt':
+            return self.bleurt_comparison()
+        elif metric == 'google_bleu':
+            return self.google_bleu_comparison()
+        else:
+            raise ValueError(f'Invalid metric: {metric}')
+
+
+
     def __repr__(self):
         return f'Output: {self.output}, Expected: {self.expected}, Correct: {self.correct}'
 

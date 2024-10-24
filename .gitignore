@@ -1,7 +1,7 @@
 *.png
 .DB_Store
 general_responses.csv
-bert_score.tex
+*.tex
 classification_test_results.tex
 request_test_results.tex
 responses.csv

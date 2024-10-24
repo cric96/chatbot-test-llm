@@ -8,3 +8,5 @@ evaluate
 google-generativeai
 nltk
 deepeval
+rouge_score
+git+https://github.com/google-research/bleurt.git
