@@ -103,9 +103,9 @@ if __name__ == '__main__':
 
             def generate_latex_table_with_single_output_metrics(results: dict[str: dict[str: list[float]]]) -> str:
                 latex_table = '\\begin{table}[ht]\n\\centering\n\\begin{tabular}{|l|c|}\n\\hline\n'
-                latex_table += '\\multicolumn{1}{|c|} & '
+                latex_table += '\\multicolumn{1}{|c|}{\multirow{2}{*}{Model}} & '
                 metric_names = sorted(list(results[list(results.keys())[0]].keys()))
-                latex_table += ' &'.join(f'{{\\multicolumn{{1}}{{*}}{{{metric}}}}}' for metric in metric_names)
+                latex_table += ' & '.join(f'{{\\multicolumn{{1}}{{*}}{{{metric}}}}}' for metric in metric_names)
                 latex_table += ' \\\\ \\hline\n'
                 for llm, result in results.items():
                     latex_table += f'{llm} & '
@@ -120,8 +120,9 @@ if __name__ == '__main__':
 
             def generate_latex_table_with_multiple_output_metric(metric_name: str, results: dict[str: dict[str: list[float]]]) -> str:
                 latex_table = '\\begin{table}[ht]\n\\centering\n\\begin{tabular}{|l|c|}\n\\hline\n'
-                latex_table += '\\multicolumn{1}{|c|}{\\multirow{2}{*}{' + metric_name + '}} & '
                 sub_metric_names = sorted(list(results[list(results.keys())[0]].keys()))
+                latex_table += '\\multicolumn{1}{|c|}{\multirow{2}{*}{Model}} & \\multicolumn{' + str(len(sub_metric_names)) + '}{c|}{' + metric_name + '} \\\\ \\cline{2-' + str(len(sub_metric_names) + 1) + '}\n'
+                latex_table += '\\multicolumn{1}{|c|}{} & '
                 latex_table += ' &'.join(f'{{\\multicolumn{{1}}{{*}}{{{metric}}}}}' for metric in sub_metric_names)
                 latex_table += ' \\\\ \\cline{2-' + str(len(sub_metric_names) + 1) + '}\n'
                 for llm, result in results.items():
