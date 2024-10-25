@@ -105,11 +105,11 @@ if __name__ == '__main__':
                 latex_table = '\\begin{table}[ht]\n\\centering\n\\begin{tabular}{|l|c|}\n\\hline\n'
                 latex_table += '\\multicolumn{1}{|c|}{\multirow{2}{*}{Model}} & '
                 metric_names = sorted(list(results[list(results.keys())[0]].keys()))
-                latex_table += ' & '.join(f'{{\\multicolumn{{1}}{{*}}{{{metric}}}}}' for metric in metric_names)
+                latex_table += ' & '.join(f'\\multicolumn{{1}}{{*}}{{{metric}}}' for metric in metric_names)
                 latex_table += ' \\\\ \\hline\n'
                 for llm, result in results.items():
                     latex_table += f'{llm} & '
-                    latex_table += '& '.join('\multicolumn{1}{r|} {' + f'{score:.{LATEX_FLOAT_PRECISION}f}' + '}' for _, score in result.items())
+                    latex_table += ' & '.join('\multicolumn{1}{r|} {' + f'{score:.{LATEX_FLOAT_PRECISION}f}' + '}' for _, score in result.items())
                     latex_table += ' \\\\ \\hline\n'
                 latex_table += '\\end{tabular}\n'
                 caption = 'Evaluation of LLMs responses using '
@@ -123,11 +123,11 @@ if __name__ == '__main__':
                 sub_metric_names = sorted(list(results[list(results.keys())[0]].keys()))
                 latex_table += '\\multicolumn{1}{|c|}{\multirow{2}{*}{Model}} & \\multicolumn{' + str(len(sub_metric_names)) + '}{c|}{' + metric_name + '} \\\\ \\cline{2-' + str(len(sub_metric_names) + 1) + '}\n'
                 latex_table += '\\multicolumn{1}{|c|}{} & '
-                latex_table += ' &'.join(f'{{\\multicolumn{{1}}{{*}}{{{metric}}}}}' for metric in sub_metric_names)
-                latex_table += ' \\\\ \\cline{2-' + str(len(sub_metric_names) + 1) + '}\n'
+                latex_table += ' &'.join(f'\\multicolumn{{1}}{{*}}{{{metric}}}' for metric in sub_metric_names)
+                latex_table += ' \\\\ \\hline\n'
                 for llm, result in results.items():
                     latex_table += f'{llm} & '
-                    latex_table += '& '.join('\multicolumn{1}{r|} {' + f'{score:.{LATEX_FLOAT_PRECISION}f}' + '}' for _, score in result.items())
+                    latex_table += ' & '.join('\multicolumn{1}{r|} {' + f'{score:.{LATEX_FLOAT_PRECISION}f}' + '}' for _, score in result.items())
                     latex_table += ' \\\\ \\hline\n'
                 latex_table += '\\end{tabular}\n'
                 caption = 'Evaluation of LLMs responses using '
