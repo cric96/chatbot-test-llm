@@ -56,11 +56,12 @@ if __name__ == '__main__':
             # store responses in a csv
             responses_df.to_csv('responses.csv', index=False)
 
-            def evaluate_with_single_output_metrics(local_metrics: list[str], names: list[str]) -> dict[str: list[float]]:
-                all_results: dict[str: list[float]] = {}
-                for m in local_metrics:
-                    all_results[m] = []
+            def evaluate_with_single_output_metrics(local_metrics: list[str], names: list[str]) -> dict[str: dict[str: list[float]]]:
+                all_results: dict[str: dict[str: list[float]]] = {}
                 for idx, report in enumerate(reports):
+                    all_results[targets[idx].models[0]] = {}
+                    for m in local_metrics:
+                        all_results[targets[idx].models[0]][m] = []
                     for question, responses in report:
                         logger.debug(f'Question: {question}')
                         for response in responses:
@@ -70,61 +71,66 @@ if __name__ == '__main__':
                                 else:
                                     score = response.comparison(m)
                                 logger.debug(f'{m} score: {score}')
-                                all_results[m].append(score)
-                for m in local_metrics:
-                    if hasattr(all_results[m][0], '__iter__'):
-                        all_results[m] = sum([x[0] for x in all_results[m]]) / len(all_results[m])
-                    else:
-                        all_results[m] = sum(all_results[m]) / len(all_results[m])
-                    logger.info(f'{m} score: {all_results[m]:.{LOG_FLOAT_PRECISION}f}\n')
+                                all_results[targets[idx].models[0]][m].append(score)
+                    for m in local_metrics:
+                        if hasattr(all_results[targets[idx].models[0]][m][0], '__iter__'):
+                            all_results[targets[idx].models[0]][m] = sum([x[0] for x in all_results[targets[idx].models[0]][m]]) / len(all_results[targets[idx].models[0]][m])
+                        else:
+                            all_results[targets[idx].models[0]][m] = sum(all_results[targets[idx].models[0]][m]) / len(all_results[targets[idx].models[0]][m])
+                        logger.info(f'{m} score: {all_results[targets[idx].models[0]][m]:.{LOG_FLOAT_PRECISION}f}\n')
                 return all_results
 
-            def evaluate_with_multi_output_metric(metric: str, sub_metrics: list[str]) -> dict[str: list[float]]:
-                all_results: dict[str: list[float]] = {}
-                for sub_metric in sub_metrics:
-                    all_results[sub_metric] = []
+            def evaluate_with_multi_output_metric(metric: str, sub_metrics: list[str]) -> dict[str: dict[str: list[float]]]:
+                all_results: dict[str: dict[str: list[float]]] = {}
                 for idx, report in enumerate(reports):
+                    all_results[targets[idx].models[0]] = {}
+                    for sub_metric in sub_metrics:
+                        all_results[targets[idx].models[0]][sub_metric] = []
                     for question, responses in report:
                         logger.debug(f'Question: {question}')
                         for response in responses:
                             score = response.comparison(metric)
                             logger.debug(f'{metric} score: {score}')
                             for sub_metric in sub_metrics:
-                                all_results[sub_metric].append(score[sub_metric])
-                for sub_metric in sub_metrics:
-                    if hasattr(all_results[sub_metric][0], '__iter__'):
-                        all_results[sub_metric] = sum([x[0] for x in all_results[sub_metric]]) / len(all_results[sub_metric])
-                    else:
-                        all_results[sub_metric] = sum(all_results[sub_metric]) / len(all_results[sub_metric])
-                    logger.info(f'{sub_metric} score: {all_results[sub_metric]:.{LOG_FLOAT_PRECISION}f}\n')
+                                all_results[targets[idx].models[0]][sub_metric].append(score[sub_metric])
+                    for sub_metric in sub_metrics:
+                        if hasattr(all_results[targets[idx].models[0]][sub_metric][0], '__iter__'):
+                            all_results[targets[idx].models[0]][sub_metric] = sum([x[0] for x in all_results[targets[idx].models[0]][sub_metric]]) / len(all_results[targets[idx].models[0]][sub_metric])
+                        else:
+                            all_results[targets[idx].models[0]][sub_metric] = sum(all_results[targets[idx].models[0]][sub_metric]) / len(all_results[targets[idx].models[0]][sub_metric])
+                        logger.info(f'{sub_metric} score: {all_results[targets[idx].models[0]][sub_metric]:.{LOG_FLOAT_PRECISION}f}\n')
                 return all_results
 
-            def generate_latex_table_with_single_output_metrics(results: dict[str: list[float]]) -> str:
+            def generate_latex_table_with_single_output_metrics(results: dict[str: dict[str: list[float]]]) -> str:
                 latex_table = '\\begin{table}[ht]\n\\centering\n\\begin{tabular}{|l|c|}\n\\hline\n'
                 latex_table += '\\multicolumn{1}{|c|} & '
-                latex_table += ' &'.join(f'{{\\multicolumn{{1}}{{*}}{{{metric}}}}}' for metric in sorted(results.keys()))
+                metric_names = sorted(list(results[list(results.keys())[0]].keys()))
+                latex_table += ' &'.join(f'{{\\multicolumn{{1}}{{*}}{{{metric}}}}}' for metric in metric_names)
                 latex_table += ' \\\\ \\hline\n'
-                for metric, score in results.items():
-                    latex_table += f'{metric.capitalize()} & '
-                    latex_table += '\multicolumn{1}{r|} {' + f'{score:.{LATEX_FLOAT_PRECISION}f}' + '} \\\\ \\hline \n'
+                for llm, result in results.items():
+                    latex_table += f'{llm} & '
+                    latex_table += '& '.join('\multicolumn{1}{r|} {' + f'{score:.{LATEX_FLOAT_PRECISION}f}' + '}' for _, score in result.items())
+                    latex_table += ' \\\\ \\hline\n'
                 latex_table += '\\end{tabular}\n'
                 caption = 'Evaluation of LLMs responses using '
-                caption += ','.join(sorted(results.keys())).replace('_', ' ')
+                caption += ','.join(metric_names).replace('_', ' ')
                 caption += ' metrics. This analysis has been performed on a set of 128 questions and using as reference Gemini.\n%\n'
                 latex_table += '\\label{tab:metrics}\n\\end{table}'
                 return latex_table
 
-            def generate_latex_table_with_multiple_output_metric(metric_name: str, results: dict[str: list[float]]) -> str:
+            def generate_latex_table_with_multiple_output_metric(metric_name: str, results: dict[str: dict[str: list[float]]]) -> str:
                 latex_table = '\\begin{table}[ht]\n\\centering\n\\begin{tabular}{|l|c|}\n\\hline\n'
                 latex_table += '\\multicolumn{1}{|c|}{\\multirow{2}{*}{' + metric_name + '}} & '
-                latex_table += ' &'.join(f'{{\\multicolumn{{1}}{{*}}{{{metric}}}}}' for metric in sorted(results.keys()))
-                latex_table += ' \\\\ \\cline{2-' + str(len(results) + 1) + '}\n'
-                for metric, score in results.items():
-                    latex_table += f'{metric.capitalize()} & '
-                    latex_table += '\multicolumn{1}{r|} {' + f'{score:.{LATEX_FLOAT_PRECISION}f}' + '} \\\\ \\hline \n'
+                sub_metric_names = sorted(list(results[list(results.keys())[0]].keys()))
+                latex_table += ' &'.join(f'{{\\multicolumn{{1}}{{*}}{{{metric}}}}}' for metric in sub_metric_names)
+                latex_table += ' \\\\ \\cline{2-' + str(len(sub_metric_names) + 1) + '}\n'
+                for llm, result in results.items():
+                    latex_table += f'{llm} & '
+                    latex_table += '& '.join('\multicolumn{1}{r|} {' + f'{score:.{LATEX_FLOAT_PRECISION}f}' + '}' for _, score in result.items())
+                    latex_table += ' \\\\ \\hline\n'
                 latex_table += '\\end{tabular}\n'
                 caption = 'Evaluation of LLMs responses using '
-                caption += ','.join(sorted(results.keys())).replace('_', ' ')
+                caption += ','.join(sub_metric_names).replace('_', ' ')
                 caption += ' metrics. This analysis has been performed on a set of 128 questions and using as reference Gemini.\n%\n'
                 latex_table += f'\\caption{{{caption}}}\n'
                 latex_table += f'\\label{{tab:{metric_name}}}\n\\end{{table}}'
