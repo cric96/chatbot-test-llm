@@ -23,11 +23,20 @@ for name in names:
         results[name] = json.load(f)
 
 scores_map = {}
+scores_label = {
+    "phi3.5:latest": "Phi3.5 (3.8b)",
+    "qwen2.5:0.5b": "Qwen2.5 (0.5b)",
+    "qwen2.5:1.5b": "Qwen2.5 (1.5b)",
+    "qwen2.5:3b": "Qwen2.5 (3b)",
+    "llama3.2:3b": "Llama3.2 (3b)",
+    "llama3.2:1b": "Llama3.2 (1b)",
+    "gemma2:2b": "Gemma2 (2b)",
+}
 for name in names:
     scores = []
     for test in results[name]["test_results"]:
         scores.append(test["metrics_data"][0]["score"])
-    scores_map[name] = scores
+    scores_map[scores_label[name]] = scores
 
 df = pd.DataFrame(scores_map)
 # wider figure
