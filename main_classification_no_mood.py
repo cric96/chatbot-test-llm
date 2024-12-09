@@ -14,7 +14,7 @@ from testbench.logging import INDENT, LOG_FLOAT_PRECISION
 LATEX_FLOAT_PRECISION = 2
 parser = argparse.ArgumentParser(description='LLM comparison for sentiment analysis in healthcare')
 parser.add_argument('--data-file', type=str, default='./data/classification/test-no-mood.csv', help='input file path')
-parser.add_argument('--bench-file', type=str, default='./data/classification/bench-gemini-no-mood.yml',
+parser.add_argument('--bench-file', type=str, default='./data/classification/bench-gemini-no-mood-compact.yml',
                     help='benchmark configuration path')
 parser.add_argument('--cache', type=str, default=None, help='cache directory path')
 enable_logging(level=LOG_INFO)

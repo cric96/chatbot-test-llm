@@ -20,11 +20,14 @@ class GeminiLanguageModel(LanguageModel):
         self.name = name
         self.system = system
 
+
+
+    def ask(self, question: str, max_output: int) -> str:
         self.generation_config = {
             "temperature": 1,
             "top_p": 0.95,
             "top_k": 40,
-            "max_output_tokens": 8192,
+            "max_output_tokens": max_output,
             "response_mime_type": "text/plain",
         }
         self.model = genai.GenerativeModel(
@@ -32,9 +35,6 @@ class GeminiLanguageModel(LanguageModel):
             generation_config=self.generation_config,
             system_instruction=self.system
         )
-
-    def ask(self, question: str) -> str:
-
         chat_session = self.model.start_chat(
             history=[]  # Use context for system prompt
         )

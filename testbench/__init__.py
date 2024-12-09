@@ -205,9 +205,12 @@ def evaluate_target(target: BenchTarget,
                     knowledge: Iterable[(str, str)],
                     use_cache: bool = True,
                     classification: bool = False) -> Iterable[(str, list[Result])]:
-    def ask_model(local_model: LanguageModel, local_question: str) -> str:
+    def ask_model(local_model: LanguageModel, local_question: str, classification: bool) -> str:
         logger.debug(f'Asking "{local_question}"')
-        return local_model.ask(local_question)
+        max_output = 4096
+        if classification:
+            max_output = 5
+        return local_model.ask(local_question, max_output)
 
     # for each knowledge pair, ask each model
     result_class = SmartResult if classification else RequestResult
@@ -243,12 +246,12 @@ def evaluate_target(target: BenchTarget,
             else:
                 enable_file_logging(str(file_name))
                 for model in models:
-                    reply = Result(ask_model(model, question), expected)
+                    reply = Result(ask_model(model, question, classification), expected)
                     # Check if reply is a valid class
                     if classes is not None:
                         if result_class._clean_string(reply.output) not in classes:
                             # Retry
-                            reply = Result(ask_model(model, question), expected)
+                            reply = Result(ask_model(model, question, classification), expected)
                             # Check if reply is a valid class
                             if result_class._clean_string(reply.output) not in classes:
                                 # Randomly pick a class

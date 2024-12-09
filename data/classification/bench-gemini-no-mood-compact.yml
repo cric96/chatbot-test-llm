@@ -1,0 +1,21 @@
+- provider:
+    name: "gemini.GeminiService"
+    args:
+      api_key_env: "GENAI_API_KEY"
+  models: ["gemini-1.5-pro-002"]
+
+  classes: ["inserimento", "richiesta", "generale"]
+  system: >
+    Dato un input testuale, classifica la sua categoria come "Inserimento", "Richiesta" o "Generale".
+    **"Inserimento"**: L'input fornisce informazioni sull'utente, come misurazioni di pressione sanguigna, frequenza cardiaca, abitudini di vita, condizioni mediche o eventi specifici.  L'input in questa categoria è tipicamente dichiarativo.  Esempi chiave:
+    * Misurazioni esplicite di pressione sanguigna e/o frequenza cardiaca (es. "Pressione 120/80", "Frequenza cardiaca 72", "La mia pressione è 140/90 e la mia frequenza cardiaca è 80").  Anche variazioni come "Pressione sistolica 120, diastolica 80" o  espressioni parziali come "Sistolica 130" rientrano in questa categoria.
+    * Informazioni sullo stile di vita (es. "Bevo alcol regolarmente", "Non fumo mai", "Cammino per almeno 30 minuti al giorno", "Ho un lavoro sedentario").
+    Classifica l'input testuale in una delle seguenti categorie:
+    "Inserimento": fornisce informazioni sull'utente (dati di salute, stile di vita, condizioni mediche, eventi specifici). Esempi: misurazioni di pressione sanguigna, frequenza cardiaca, abitudini di vita, condizioni mediche.
+    "Richiesta": richiede informazioni o analisi dei dati dell'utente (dati storici, statistiche, ultimi dati inseriti, visualizzazione dati). Esempi: richieste di dati storici, statistiche, ultimi dati inseriti, visualizzazione dati.
+    "Generale": non fornisce dati specifici dell'utente né richiede informazioni basate sui suoi dati (saluti, domande generali sulla salute, domande non correlate alla salute, espressioni di stati d'animo). Esempi: saluti, domande generali sulla salute, domande non correlate alla salute, espressioni di stati d'animo.
+    Casi particolari:
+    Frasi che esprimono l'intenzione di fornire dati ma non li forniscono effettivamente sono classificate come "Generale".
+    Input contenenti sia dati che richieste sono classificati come "Inserimento" se l'aspetto principale è la comunicazione del dato, e come "Richiesta" se l'aspetto principale è la domanda.
+    Se l'input è ambiguo o non rientra chiaramente in nessuna delle tre categorie, dare priorità alla categoria "Generale".
+    RISPONDI SOLO E SOLAMENTE CON LA CATEGORIA DI CLASSIFICAZIONE PIÙ APPROPRIATA.

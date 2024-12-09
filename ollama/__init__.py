@@ -29,12 +29,15 @@ class OllamaLanguageModel(LanguageModel):
         self.system = system
         self.name = name
 
-    def ask(self, question: str) -> str:
+    def ask(self, question: str, max_output=4096) -> str:
         payload = {
             'model': self.name,
             'prompt': f'{question}',
             'stream': False,
             'system': self.system,
+            'options': {
+                'num_predict': max_output
+            }
         }
         reply = requests.post(f'http://{self.host}:{self.port}/api/generate', data=json.dumps(payload))
         return OllamaLanguageModel._pretty_format(reply.json()['response'])
